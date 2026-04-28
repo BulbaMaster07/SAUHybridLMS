@@ -52,16 +52,17 @@ nav li {
     color: #444;
     cursor: pointer;
 }
-nav.li.visited{
-    color: inherit;
-    text-decoration: none;
-}
+
 nav li.active::after {
     content: "";
     display: block;
     height: 2px;
     background: #4a90e2;
     margin-top: 3px;
+}
+nav.li.a.visited{
+    color: inherit;
+    text-decoration: none;
 }
 
 /* ================= MAIN ================= */

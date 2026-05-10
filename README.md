@@ -200,6 +200,13 @@ South Asian University
 
 [View Project Proposal](./SAULMS_THASHAN-VAREYNYAM-SHOURYA_FWDProjectProposal.pdf)
 
+---  
+
+# :pushpin: Note
+
+- Some elements may not be working as intended and display glitches may be visible, if any. Please understand, that the website is currently interactive enough for the aim of a demo.
+- Comments in the code may be elaborate or emphasized, and have been kept intentionally, for the purpose of code understanding.
+- For any enquiries, please reach out to our team members.  
 ---
 
 <p align="center">

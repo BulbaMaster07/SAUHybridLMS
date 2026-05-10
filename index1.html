@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aryan Kumar — Profile · SAU LMS</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Stylesheets/style.css">
+</head>
+<body>
+
+<!-- BG LAYERS -->
+<div id="bg-layer"></div>
+<div id="bg-overlay"></div>
+<div id="bg-pattern-overlay"></div>
+
+<!-- PARTICLES -->
+<div id="particles-container"></div>
+
+<!-- SETTINGS BACKDROP -->
+<div id="settings-backdrop" onclick="closeSettings()"></div>
+
+<!-- SIDEBAR OVERLAY (mobile) -->
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- SETTINGS PANEL -->
+<div id="settings-panel">
+  <div class="sp-header">
+    <div class="sp-title">⚙️ Profile Settings</div>
+    <button class="sp-close" onclick="closeSettings()">✕</button>
+  </div>
+  <div class="sp-body">
+
+    <!-- AVATAR -->
+    <div class="sp-section">
+      <div class="sp-section-title">Avatar</div>
+      <div class="sp-avatar-zone">
+        <div class="sp-avatar-ring" onclick="document.getElementById('avatar-upload').click()">
+          <div class="sp-avatar-inner">
+            <img id="sp-av-img" style="display:none;">
+            <span id="sp-av-emoji">🎓</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+          <button class="sp-btn primary" onclick="document.getElementById('avatar-upload').click()">📷 Upload Photo</button>
+          <button class="sp-btn" onclick="clearAvatar()">Reset</button>
+        </div>
+      </div>
+      <div class="sp-section-title" style="margin-top:12px;">Choose Emoji Avatar</div>
+      <div class="emoji-grid" id="emoji-grid"></div>
+    </div>
+
+    <!-- PROFILE BORDER -->
+    <div class="sp-section">
+      <div class="sp-section-title">Profile Image Border</div>
+      <div class="border-presets" id="border-presets"></div>
+      <div class="toggle-row" style="margin-top:14px;">
+        <span class="toggle-label">✨ Animated Border</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="anim-border-toggle" onchange="toggleAnimBorder(this.checked)">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="sp-section-title">Custom Border</div>
+        <div class="color-pair">
+          <label>Color 1</label>
+          <input type="color" id="custom-c1" value="#1a4fd6" oninput="applyCustomBorder()">
+        </div>
+        <div class="color-pair">
+          <label>Color 2</label>
+          <input type="color" id="custom-c2" value="#3b6ef0" oninput="applyCustomBorder()">
+        </div>
+        <div class="color-pair">
+          <label>Direction</label>
+          <select class="sp-select" id="custom-dir" onchange="applyCustomBorder()">
+            <option value="135deg">Diagonal ↘</option>
+            <option value="to right">Horizontal →</option>
+            <option value="to bottom">Vertical ↓</option>
+            <option value="45deg">Diagonal ↗</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- THEME -->
+    <div class="sp-section">
+      <div class="sp-section-title">Color Theme</div>
+      <div class="theme-grid" id="theme-grid"></div>
+    </div>
+
+    <!-- NAMECARD -->
+    <div class="sp-section">
+      <div class="sp-section-title">Namecard Style</div>
+      <div class="nc-presets" id="nc-presets"></div>
+    </div>
+
+    <!-- BACKGROUND -->
+    <div class="sp-section">
+      <div class="sp-section-title">Page Background</div>
+      <div class="bg-grid" id="bg-grid"></div>
+      <div style="margin-top:12px;">
+        <button class="sp-btn" style="width:100%;" onclick="document.getElementById('bg-upload').click()">🖼️ Upload Custom Background</button>
+        <input type="file" id="bg-upload" accept="image/*" onchange="handleBgUpload(event)" style="display:none;">
+      </div>
+      <div style="margin-top:12px;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+          <span style="font-size:11px;font-weight:700;color:var(--muted);">Overlay Opacity</span>
+          <span style="font-size:11px;font-weight:700;color:var(--accent);" id="overlay-val">85%</span>
+        </div>
+        <input type="range" class="sp-slider" id="overlay-slider" min="0" max="100" value="85" oninput="setOverlay(this.value)">
+      </div>
+      <div style="margin-top:10px;">
+        <div class="toggle-row">
+          <span class="toggle-label">Show Pattern Overlay</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="pattern-toggle" checked onchange="togglePattern(this.checked)">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="toggle-row">
+          <span class="toggle-label">Floating Particles</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="particles-toggle" checked onchange="toggleParticles(this.checked)">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- FONT -->
+    <div class="sp-section">
+      <div class="sp-section-title">Typography</div>
+      <div class="font-presets" id="font-presets"></div>
+      <div style="margin-top:12px;">
+        <div class="info-key" style="margin-bottom:6px;">Custom Google Font Name</div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input type="text" class="sp-input" id="custom-font-input" placeholder="e.g. Outfit, DM Sans, Figtree…" style="flex:1;">
+          <button class="sp-btn primary" onclick="applyCustomFont()">Apply</button>
+        </div>
+        <div class="font-preview" id="font-preview">The quick brown fox jumps · 0123</div>
+      </div>
+    </div>
+
+    <!-- PROFILE INFO -->
+    <div class="sp-section">
+      <div class="sp-section-title">Quick Edit Profile</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div>
+          <div class="info-key" style="margin-bottom:4px;">Display Name</div>
+          <input type="text" class="msg-input" id="sp-name" value="Aryan Kumar" style="width:100%;border-radius:8px;" oninput="updateName(this.value)">
+        </div>
+        <div>
+          <div class="info-key" style="margin-bottom:4px;">Role / Title</div>
+          <input type="text" class="msg-input" id="sp-role" value="Computer Science Engineering" style="width:100%;border-radius:8px;" oninput="updateRole(this.value)">
+        </div>
+        <div>
+          <div class="info-key" style="margin-bottom:4px;">Motto / Quote</div>
+          <input type="text" class="msg-input" id="sp-motto" value="Code, learn, repeat — building tomorrow's tech today." style="width:100%;border-radius:8px;" oninput="updateMotto(this.value)">
+        </div>
+        <div>
+          <div class="info-key" style="margin-bottom:4px;">Now Playing 🎵</div>
+          <input type="text" class="msg-input" id="sp-music-title" value="Blinding Lights" style="width:100%;border-radius:8px;" oninput="updateMusic('title',this.value)">
+          <input type="text" class="msg-input" id="sp-music-artist" value="The Weeknd" style="width:100%;border-radius:8px;margin-top:6px;" oninput="updateMusic('artist',this.value)">
+        </div>
+      </div>
+      <div style="margin-top:14px;">
+        <button class="sp-btn primary" onclick="saveAll();closeSettings();" style="width:100%;">💾 Save All Changes</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<input type="file" id="avatar-upload" accept="image/*" onchange="handleAvatarUpload(event)" style="display:none;">
+
+<!-- ── SIDEBAR ── -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-name">SAU</div>
+    <div class="logo-sub">Learning Management System</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-label">Main</div>
+    <div class="nav-item" onclick="window.location.href='studentdashboard.html'"><span class="nav-icon">⬛</span> Overview</div>
+    <div class="nav-item" onclick="window.location.href='courses.html'" style="cursor:pointer;"><span class="nav-icon">📚</span> Courses</div>
+    <div class="nav-item" onclick="window.location.href='assignments.html'" style="cursor:pointer;"><span class="nav-icon">📄</span> Assignments 
+    <span class="nav-badge">4</span></div>
+    <div class="nav-item" onclick="window.location.href='grades.html'" style="cursor:pointer;"><span class="nav-icon">📈</span> Grades</div>
+    <div class="nav-label">Tools</div>
+    <div class="nav-item" onclick="window.location.href='planner.html'" style="cursor:pointer;"><span class="nav-icon">📅</span> Planner</div>
+    <div class="nav-item" onclick="window.location.href='discuss.html'" style="cursor:pointer;"><span class="nav-icon">💬</span> Discuss</div>
+    <div class="nav-item" onclick="window.location.href='https://ca-qr.avinya.live/login.html'">
+      <span class="nav-icon">&#128247;</span>
+      QR Attendance
+    </div>
+    <div class="nav-item active"><span class="nav-icon">👤</span> Profile</div>
+    <div class="nav-item" onclick="window.location.href='index.html'" style="cursor:pointer;">
+       <span class="nav-icon">&#128682;</span>Logout 
+    </div>
+  </nav>
+  <div class="sidebar-user">
+    <div class="user-avatar" id="sidebar-avatar-text">AK</div>
+    <div>
+      <div class="user-name" id="sidebar-name">Aryan Kumar</div>
+      <div class="user-role">B.Tech CSE · Sem 2</div>
+    </div>
+  </div>
+</aside>
+
+<!-- ── MAIN ── -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Open menu">☰</button>
+      <div>
+        <div class="topbar-greeting">My Profile ✨</div>
+        <div class="topbar-date" id="topbar-date"></div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="icon-btn" title="Back" onclick="window.location.href='studentdashboard.html'" style="font-size:18px;">←</div>
+      <div class="icon-btn" title="Notifications">🔔</div>
+      <div class="icon-btn settings-btn" title="Open Settings" onclick="openSettings()">⚙️</div>
+    </div>
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <div class="content">
+    <div class="profile-grid">
+
+      <!-- ── LEFT COLUMN ── -->
+      <div class="profile-left">
+
+        <!-- NAMECARD + BANNER -->
+        <div class="namecard-wrap">
+          <div class="profile-banner" id="profile-banner">
+            <div class="banner-pattern"></div>
+            <div class="banner-overlay"></div>
+            <div class="banner-sparkles" id="banner-sparkles"></div>
+            <button class="banner-edit-btn" onclick="openSettings()">✏️ Customize</button>
+          </div>
+          <div class="namecard" id="namecard">
+            <div class="av-wrap">
+              <div class="av-outer av-float" id="av-outer">
+                <div class="av-inner" onclick="document.getElementById('avatar-upload').click()">
+                  <span id="av-emoji">🎓</span>
+                  <img id="av-img" style="display:none;" alt="Profile photo">
+                  <div class="av-change-hint">Change Photo</div>
+                </div>
+              </div>
+              <div class="av-badges">
+                <div class="badge-pill">B.Tech CSE</div>
+                <div class="badge-pill">Semester 2</div>
+                <div class="badge-pill" id="status-badge-pill">🟢 Online</div>
+              </div>
+            </div>
+
+            <div class="status-row">
+              <div class="status-dot online" id="nc-status-dot"></div>
+              <div class="status-text" id="nc-status-text">Online — Ready to study</div>
+            </div>
+
+            <div class="nc-name" contenteditable="true" id="nc-name">Aryan Kumar</div>
+            <div class="nc-role" contenteditable="true" id="nc-role">Computer Science Engineering</div>
+            <div class="nc-uni">South Asian University · 2025-2029</div>
+            <div class="nc-motto" contenteditable="true" id="nc-motto">
+              "Code, learn, repeat — building tomorrow's tech today."
+            </div>
+            <div class="nc-social">
+              <a class="nc-social-btn" href="#" title="GitHub">💻 GitHub</a>
+              <a class="nc-social-btn" href="#" title="LinkedIn">💼 LinkedIn</a>
+              <a class="nc-social-btn" href="#" title="Twitter">🐦 X</a>
+              <a class="nc-social-btn" href="#" title="Portfolio">🌐 Portfolio</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- NOW PLAYING -->
+        <div class="music-card" id="music-card">
+          <div class="music-now">🎵 Now Playing</div>
+          <div class="music-title" id="music-title-el">Blinding Lights</div>
+          <div class="music-artist" id="music-artist-el">The Weeknd</div>
+          <div class="music-bar">
+            <div class="music-wave" style="height:8px;animation-delay:0s;"></div>
+            <div class="music-wave" style="height:14px;animation-delay:0.1s;"></div>
+            <div class="music-wave" style="height:18px;animation-delay:0.2s;"></div>
+            <div class="music-wave" style="height:12px;animation-delay:0.3s;"></div>
+            <div class="music-wave" style="height:20px;animation-delay:0.15s;"></div>
+            <div class="music-wave" style="height:10px;animation-delay:0.25s;"></div>
+            <div class="music-wave" style="height:16px;animation-delay:0.05s;"></div>
+          </div>
+        </div>
+
+        <!-- STATUS SELECTOR -->
+        <div class="info-section">
+          <div class="info-title"><span class="info-title-icon">📡</span> My Status</div>
+          <div class="status-picker-row">
+            <button class="status-chip active" onclick="setStatus('online','🟢 Online','Online — Ready to study',this)">
+              <div class="sdot" style="background:#2eca7a;"></div> Online
+            </button>
+            <button class="status-chip" onclick="setStatus('studying','🟡 Studying','Studying — In focus mode',this)">
+              <div class="sdot" style="background:#f59e0b;"></div> Studying
+            </button>
+            <button class="status-chip" onclick="setStatus('busy','🔴 Busy','Busy — In exam prep',this)">
+              <div class="sdot" style="background:#ef4444;"></div> Busy
+            </button>
+            <button class="status-chip" onclick="setStatus('away','⚪ Away','Away — Be back soon',this)">
+              <div class="sdot" style="background:#94a3b8;"></div> Away
+            </button>
+          </div>
+          <div style="margin-top:12px;">
+            <div class="info-key" style="margin-bottom:6px;">Custom Message</div>
+            <input type="text" id="custom-status-input" class="msg-input" style="width:100%;border-radius:8px;" placeholder="What are you up to?" value="Online — Ready to study" oninput="setCustomStatus(this.value)">
+          </div>
+        </div>
+
+        <!-- PERSONAL INFO-->
+        <div class="info-section">
+          <div class="info-title"><span class="info-title-icon">👤</span> Personal Info</div>
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-key">Full Name</div>
+              <div class="info-val" contenteditable="true">Aryan Kumar</div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">Roll Number</div>
+              <div class="info-val mono" contenteditable="true">22CSE0471</div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">Date of Birth</div>
+              <div class="info-val" contenteditable="true">14 March 2004</div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">Phone</div>
+              <div class="info-val mono" contenteditable="true">+91 98765 43210</div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">Email</div>
+              <div class="info-val mono" contenteditable="true" style="font-size:11px;">aryan.kumar@sau.edu.in</div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">City</div>
+              <div class="info-val" contenteditable="true">New Delhi, India</div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">Languages</div>
+              <div class="info-val" contenteditable="true">Hindi, English</div>
+            </div>
+          </div>
+          <div class="edit-hint">💡 Click any field to edit</div>
+        </div>
+
+        <!-- PROFILE COMPLETION -->
+        <div class="info-section">
+          <div class="info-title"><span class="info-title-icon">⚡</span> Profile Completion</div>
+          <div class="completion-bar-wrap">
+            <div class="completion-bar" style="width:88%"></div>
+          </div>
+          <div class="completion-label">
+            <span>88% complete</span>
+            <span>Add a project link!</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── RIGHT COLUMN ── -->
+      <div class="profile-right">
+
+        <!-- BIO + TABS -->
+        <div class="info-section">
+          <div class="info-title"><span class="info-title-icon">📖</span> About Me</div>
+          <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('bio',this)">Bio</button>
+            <button class="tab-btn" onclick="switchTab('hobbies',this)">Hobbies</button>
+            <button class="tab-btn" onclick="switchTab('interests',this)">Interests</button>
+            <button class="tab-btn" onclick="switchTab('timeline',this)">Timeline</button>
+          </div>
+
+          <!-- BIO TAB -->
+          <div class="tab-panel active" id="tab-bio">
+            <div contenteditable="true" style="font-size:13px;line-height:1.8;color:var(--muted);min-height:80px;border-radius:6px;padding:6px;" id="bio-field">
+              Passionate CS student with a love for building scalable web applications and exploring AI/ML. Currently working on my final year project — a real-time collaborative code editor. Open to internship opportunities in full-stack development. Coffee-fuelled, deadline-driven, always curious. 🚀
+            </div>
+            <div class="edit-hint">💡 Click to edit your bio</div>
+          </div>
+
+          <!-- HOBBIES TAB (activated) -->
+          <div class="tab-panel" id="tab-hobbies">
+            <div class="hobby-grid" id="hobbies-grid">
+              <div class="hobby-card" onclick ="removeTag(this)"><div class="hobby-icon">🎮</div><div class="hobby-name">Gaming</div></div>
+              <div class="hobby-card" onclick="removeTag(this)"><div class="hobby-icon">📸</div><div class="hobby-name">Photography</div></div>
+              <div class="hobby-card" onclick="removeTag(this)"><div class="hobby-icon">🎵</div><div class="hobby-name">Music</div></div>
+              <div class="hobby-card" onclick="removeTag(this)"><div class="hobby-icon">✈️</div><div class="hobby-name">Travel</div></div>
+              <div class="hobby-card" onclick="removeTag(this)"><div class="hobby-icon">📚</div><div class="hobby-name">Reading</div></div>
+              <div class="hobby-card" onclick="removeTag(this)"><div class="hobby-icon">🍕</div><div class="hobby-name">Foodie</div></div>
+              <div class="hobby-card" data-add-hobby style="cursor:pointer;border:1px dashed var(--border-strong);" onclick="addHobby()">
+                <div class="hobby-icon">➕</div>
+                <div class="hobby-name">Add Hobby</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- INTERESTS TAB (activated) -->
+          <div class="tab-panel" id="tab-interests">
+            <div style="margin-bottom:16px;">
+              <div class="info-key" style="margin-bottom:8px;">Tech Interests</div>
+              <div class="tag-row" id="tech-interests">
+                <span class="interest-tag">🤖 Artificial Intelligence</span>
+                <span class="interest-tag">🌐 Web3</span>
+                <span class="interest-tag">☁️ Cloud Computing</span>
+                <span class="interest-tag">🔐 Cybersecurity</span>
+                <span class="interest-tag">📱 Mobile Dev</span>
+                <span class="add-tag-btn" onclick="addInterest('tech-interests','Tech Interest')">+ Add</span>
+              </div>
+            </div>
+            <div style="margin-bottom:16px;">
+              <div class="info-key" style="margin-bottom:8px;">Personal Interests</div>
+              <div class="tag-row" id="personal-interests">
+                <span class="interest-tag" onclick="removeTag(this)">♟️ Chess</span>
+                <span class="interest-tag" onclick="removeTag(this)">🏏 Cricket</span>
+                <span class="interest-tag" onclick="removeTag(this)">🎬 Cinema</span>
+                <span class="interest-tag" onclick="removeTag(this)">🧘 Mindfulness</span>
+                <span class="interest-tag" onclick="removeTag(this)">🌱 Sustainability</span>
+                <span class="add-tag-btn" onclick="addInterest('personal-interests','Interest')">+ Add</span>
+              </div>
+            </div>
+            <div>
+              <div class="info-key" style="margin-bottom:8px;">Currently Reading / Watching</div>
+              <div contenteditable="true" style="font-size:13px;color:var(--muted);padding:6px;border-radius:6px;min-height:36px;">
+                📖 Atomic Habits · 🎬 Oppenheimer · 🎮 Baldur's Gate 3
+              </div>
+            </div>
+          </div>
+
+          <!-- TIMELINE TAB -->
+          <div class="tab-panel" id="tab-timeline">
+            <div class="timeline">
+              <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-year">2026</div>
+                <div class="tl-title">Final Year Project</div>
+                <div class="tl-sub">Real-time collaborative code editor with AI assistance</div>
+                <div class="tl-badge">In Progress</div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-year">Summer 2025</div>
+                <div class="tl-title">Software Intern @ TechCorp India</div>
+                <div class="tl-sub">Worked on React dashboard &amp; Node.js microservices</div>
+                <div class="tl-badge">Completed</div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-year">2024</div>
+                <div class="tl-title">Hackathon Winner — HackIndia</div>
+                <div class="tl-sub">Built AI-powered study companion in 36 hours</div>
+                <div class="tl-badge">🏆 1st Place</div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-year">2022</div>
+                <div class="tl-title">Enrolled at SAU — B.Tech CSE</div>
+                <div class="tl-sub">Specialisation: AI &amp; Machine Learning</div>
+                <div class="tl-badge">Foundation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACHIEVEMENTS / STATS -->
+        <div class="info-section">
+          <div class="info-title"><span class="info-title-icon">🏆</span> Academic Highlights</div>
+          <div class="ach-grid">
+            <div class="ach-item"><div class="ach-icon">📊</div><div class="ach-val">8.7</div><div class="ach-label">CGPA</div></div>
+            <div class="ach-item"><div class="ach-icon">📚</div><div class="ach-val">8</div><div class="ach-label">Courses</div></div>
+            <div class="ach-item"><div class="ach-icon">📝</div><div class="ach-val">47</div><div class="ach-label">Assignments</div></div>
+            <div class="ach-item"><div class="ach-icon">🏅</div><div class="ach-val">Top 15%</div><div class="ach-label">Batch Rank</div></div>
+            <div class="ach-item"><div class="ach-icon">🎯</div><div class="ach-val">94%</div><div class="ach-label">Attendance</div></div>
+            <div class="ach-item"><div class="ach-icon">🔥</div><div class="ach-val">12</div><div class="ach-label">Day Streak</div></div>
+          </div>
+        </div>
+
+        <!-- PROFESSIONAL INFO (Skills activated) -->
+        <div class="info-section">
+          <div class="info-title"><span class="info-title-icon">💼</span> Professional Info</div>
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-key">Programme</div>
+              <div class="info-val" contenteditable="true">B.Tech Computer Science</div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">Specialisation</div>
+              <div class="info-val" contenteditable="true">AI &amp; Machine Learning</div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">Graduation Year</div>
+              <div class="info-val" contenteditable="true">2026</div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">Career Goal</div>
+              <div class="info-val" contenteditable="true">Software Engineer @ FAANG</div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">Internship</div>
+              <div class="info-val" contenteditable="true">TechCorp India (Summer '25)</div>
+            </div>
+            <div class="info-item">
+              <div class="info-key">Open To</div>
+              <div class="info-val" contenteditable="true">Internships · Full-time</div>
+            </div>
+          </div>
+          <div style="margin-top:16px;">
+            <div class="info-key" style="margin-bottom:8px;">Skills &amp; Technologies <span style="font-size:9px;color:var(--subtle);font-weight:400;">(click to remove)</span></div>
+            <div class="tag-row" id="skills-container">
+              <span class="skill-tag" onclick="removeTag(this)">Python</span>
+              <span class="skill-tag" onclick="removeTag(this)">React.js</span>
+              <span class="skill-tag" onclick="removeTag(this)">SQL</span>
+              <span class="skill-tag" onclick="removeTag(this)">Machine Learning</span>
+              <span class="skill-tag" onclick="removeTag(this)">Data Structures</span>
+              <span class="skill-tag" onclick="removeTag(this)">Node.js</span>
+              <span class="skill-tag" onclick="removeTag(this)">Git</span>
+              <span class="skill-tag" onclick="removeTag(this)">C++</span>
+              <span class="skill-tag" onclick="removeTag(this)">TensorFlow</span>
+              <span class="add-tag-btn" onclick="addSkill()">+ Add Skill</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- COURSE PROGRESS -->
+        <div class="info-section">
+          <div class="info-title"><span class="info-title-icon">📈</span> Course Progress</div>
+          <div id="course-list">
+            <div class="cp-item">
+              <div class="cp-icon" style="background:#dce7fd;">💻</div>
+              <div class="cp-info"><div class="cp-name">Web Development</div><div class="cp-meta">Dr. Sharma · 22 lessons</div></div>
+              <div class="cp-bar-wrap"><div class="cp-bar" style="width:65%"></div></div>
+              <div class="cp-pct">65%</div>
+            </div>
+            <div class="cp-item">
+              <div class="cp-icon" style="background:#fef3dc;">🤖</div>
+              <div class="cp-info"><div class="cp-name">Python Programming</div><div class="cp-meta">Dr. Seth · 18 lessons</div></div>
+              <div class="cp-bar-wrap"><div class="cp-bar" style="width:40%"></div></div>
+              <div class="cp-pct">40%</div>
+            </div>
+            <div class="cp-item">
+              <div class="cp-icon" style="background:#d6f5e7;">🗄️</div>
+              <div class="cp-info"><div class="cp-name">Mathematics</div><div class="cp-meta">Prof. Deshpande · 20 lessons</div></div>
+              <div class="cp-bar-wrap"><div class="cp-bar" style="width:55%"></div></div>
+              <div class="cp-pct">55%</div>
+            </div>
+            <div class="cp-item">
+              <div class="cp-icon" style="background:#fde8e8;">🔗</div>
+              <div class="cp-info"><div class="cp-name">Data Structures</div><div class="cp-meta">Dr. Ashwini · 24 lessons</div></div>
+              <div class="cp-bar-wrap"><div class="cp-bar" style="width:28%"></div></div>
+              <div class="cp-pct">28%</div>
+            </div>
+            <div class="cp-item">
+              <div class="cp-icon" style="background:#ede8fd;">✏️</div>
+              <div class="cp-info"><div class="cp-name">English</div><div class="cp-meta">Dr. Mukherjee · 16 lessons</div></div>
+              <div class="cp-bar-wrap"><div class="cp-bar" style="width:72%"></div></div>
+              <div class="cp-pct">72%</div>
+            </div>
+            <div class="cp-item">
+              <div class="cp-icon" style="background:#fff3dc;">📟</div>
+              <div class="cp-info"><div class="cp-name">Digital Logic Design</div><div class="cp-meta">Dr. Ahuja · 14 lessons</div></div>
+              <div class="cp-bar-wrap"><div class="cp-bar" style="width:50%"></div></div>
+              <div class="cp-pct">50%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MESSAGE BOARD -->
+        <div class="msgboard">
+          <div class="info-title"><span class="info-title-icon">💬</span> Message Board</div>
+          <div class="msg-feed" id="msg-feed">
+            <div class="msg-item">
+              <div class="msg-av" style="background:#dce7fd;color:#1a4fd6;">DS</div>
+              <div class="msg-body">
+                <div><span class="msg-sender">Dr. Sharma</span><span class="msg-time">Today, 9:15 AM</span></div>
+                <div class="msg-text">Great work on the React assignment, Aryan! The component architecture was very clean. Keep it up! 🙌</div>
+              </div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-av" style="background:#d6f5e7;color:#146b45;">PD</div>
+              <div class="msg-body">
+                <div><span class="msg-sender">Prof. Deshpande</span><span class="msg-time">Yesterday</span></div>
+                <div class="msg-text">Reminder: Mid-semester math exam is on 20th May. Please review integration chapters 4–7.</div>
+              </div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-av" style="background:#fef3dc;color:#a05a08;">RV</div>
+              <div class="msg-body">
+                <div><span class="msg-sender">Riya Verma</span><span class="msg-time">2 days ago</span></div>
+                <div class="msg-text">Hey! Are you joining the hackathon team this weekend? We need a frontend dev 🙂</div>
+              </div>
+            </div>
+          </div>
+          <div class="msg-compose">
+            <input type="text" class="msg-input" id="msg-input" placeholder="Write on the board…" onkeydown="if(event.key==='Enter')sendMsg()">
+            <button class="msg-send" onclick="sendMsg()">➤</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="Scripts/script.js"></script>
+</body>
+</html>

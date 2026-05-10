@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings - SAU LMS</title>
+<link rel="stylesheet" href="Stylesheets/dashboard.css">
+<link rel="stylesheet" href="Stylesheets/settings.css">
+</head>
+<body>
+
+<aside class="sidebar">
+
+<div class="sidebar-logo">
+<div class="logo-name">SAU</div>
+<div class="logo-sub">Learning Portal</div>
+</div>
+
+<nav class="sidebar-nav">
+
+<div class="nav-label">Main</div>
+
+<div class="nav-item" onclick="window.location.href='studentdashboard.html'" style="cursor:pointer;">
+<span class="nav-icon">&#9632;</span>
+Overview
+</div>
+
+<div class="nav-item" onclick="window.location.href='courses.html'" style="cursor:pointer;">
+<span class="nav-icon">&#128218;</span>
+Courses
+</div>
+
+<div class="nav-item" onclick="window.location.href='assignments.html'" style="cursor:pointer;">
+<span class="nav-icon">&#128196;</span>
+Assignments
+</div>
+
+<div class="nav-item" onclick="window.location.href='grades.html'" style="cursor:pointer;">
+<span class="nav-icon">&#128200;</span>
+Grades
+</div>
+
+<div class="nav-label">Tools</div>
+
+<div class="nav-item" onclick="window.location.href='planner.html'" style="cursor:pointer;">
+<span class="nav-icon">&#128197;</span>
+Planner
+</div>
+
+<div class="nav-item" onclick="window.location.href='discuss.html'" style="cursor:pointer;">
+<span class="nav-icon">&#128172;</span>
+Discuss
+</div>
+
+<div class="nav-item active">
+<span class="nav-icon">&#9881;</span>
+Settings
+</div>
+<div class="nav-item" onclick="window.location.href='index.html'" style="cursor:pointer;">
+    <span class="nav-icon">&#128682;</span>Logout 
+</div>
+</nav>
+
+<div class="sidebar-user">
+<div class="user-avatar">AK</div>
+<div>
+<div class="user-name">Aryan Kumar</div>
+<div class="user-role">B.Tech CSE &middot; Sem 2</div>
+</div>
+</div>
+
+</aside>
+
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<div class="main">
+
+<div class="topbar">
+<button class="mobile-menu-btn" onclick="toggleSidebar()">&#9776;</button>
+<div>
+<div class="topbar-greeting">Settings Workspace</div>
+<div class="topbar-date">Customize your learning experience</div>
+</div>
+</div>
+
+<div class="content">
+
+<div class="settings-layout">
+
+<div class="settings-hero">
+<div class="settings-eyebrow">System Preferences</div>
+<div class="settings-title">
+Personalize your<br>
+academic dashboard
+</div>
+<div class="settings-sub">
+Manage notifications, themes, accessibility preferences and privacy settings from one intelligent control center.
+</div>
+</div>
+
+<div class="settings-grid">
+
+<div class="settings-card">
+<div class="settings-card-title">Notifications</div>
+
+<div class="toggle-row">
+<div>
+<div class="setting-name">Assignment Alerts</div>
+<div class="setting-desc">Receive reminders before deadlines</div>
+</div>
+<label class="switch">
+<input type="checkbox" id="assignmentAlerts">
+<span class="slider"></span>
+</label>
+</div>
+
+<div class="toggle-row">
+<div>
+<div class="setting-name">Quiz Notifications</div>
+<div class="setting-desc">Instant updates for new quizzes</div>
+</div>
+<label class="switch">
+<input type="checkbox" id="quizAlerts">
+<span class="slider"></span>
+</label>
+</div>
+
+<div class="toggle-row">
+<div>
+<div class="setting-name">Discussion Mentions</div>
+<div class="setting-desc">Get notified when tagged</div>
+</div>
+<label class="switch">
+<input type="checkbox" id="discussionAlerts">
+<span class="slider"></span>
+</label>
+</div>
+
+</div>
+<div class="settings-card">
+<div class="settings-card-title">Privacy & Security</div>
+
+<div class="toggle-row">
+<div>
+<div class="setting-name">Public Profile</div>
+<div class="setting-desc">Allow classmates to view your profile</div>
+</div>
+<label class="switch">
+<input type="checkbox" id="publicProfile">
+<span class="slider"></span>
+</label>
+</div>
+
+<div class="toggle-row">
+<div>
+<div class="setting-name">Activity Tracking</div>
+<div class="setting-desc">Track progress and learning analytics</div>
+</div>
+<label class="switch">
+<input type="checkbox" id="tracking">
+<span class="slider"></span>
+</label>
+</div>
+
+<button class="save-btn" onclick="saveSettings()">
+Save Preferences
+</button>
+
+<div class="save-status" id="saveStatus">
+Preferences updated successfully.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="Scripts/dashboard.js"></script>
+<script src="Scripts/settings.js"></script>
+</body>
+</html>

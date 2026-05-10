@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discuss — SAU LMS</title>
+<link rel="stylesheet" href="Stylesheets/dashboard.css">
+<link rel="stylesheet" href="Stylesheets/discuss.css">
+<script src="Scripts/dashboard.js" defer></script>
+<script src="Scripts/discuss.js" defer></script>
+
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+<div class="sidebar-logo">
+<div class="logo-name">SAU</div>
+<div class="logo-sub">Learning Management System</div>
+</div>
+
+<nav class="sidebar-nav">
+
+<div class="nav-label">Main</div>
+
+<div class="nav-item" onclick="window.location.href='studentdashboard.html'" style="cursor:pointer;">
+<span class="nav-icon">&#9632;</span>
+Overview
+</div>
+
+<div class="nav-item" onclick="window.location.href='courses.html'" style="cursor:pointer;">
+<span class="nav-icon">&#128218;</span>
+Courses
+</div>
+
+<div class="nav-item" onclick="window.location.href='assignments.html'" style="cursor:pointer;">
+<span class="nav-icon">&#128196;</span>
+Assignments
+<span class="nav-badge">4</span>
+</div>
+
+<div class="nav-item" onclick="window.location.href='grades.html'" style="cursor:pointer;">
+<span class="nav-icon">&#128200;</span>
+Grades
+</div>
+
+<div class="nav-label">Tools</div>
+
+<div class="nav-item" onclick="window.location.href='planner.html'" style="cursor:pointer;">
+<span class="nav-icon">&#128197;</span>
+Planner
+</div>
+
+<div class="nav-item active" onclick="window.location.href='discuss.html'" style="cursor:pointer;">
+<span class="nav-icon">&#128172;</span>
+Discuss
+</div>
+
+<div class="nav-item" onclick="window.location.href='https://ca-qr.avinya.live/login.html'" style="cursor:pointer;">
+<span class="nav-icon">&#128247;</span>
+QR Attendance
+</div>
+
+<div class="nav-item" onclick="window.location.href='index1.html'" style="cursor:pointer;">
+<span class="nav-icon">&#128100;</span>
+Profile
+</div>
+
+<div class="nav-item" onclick="window.location.href='index.html'" style="cursor:pointer;">
+    <span class="nav-icon">&#128682;</span>Logout 
+</div>
+</nav>
+
+<div class="sidebar-user">
+<div class="user-avatar">AK</div>
+<div>
+<div class="user-name">Aryan Kumar</div>
+<div class="user-role">B.Tech CSE · Sem 2</div>
+</div>
+</div>
+
+</aside>
+
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<div class="main">
+<div class="topbar">
+<button class="mobile-menu-btn" onclick="toggleSidebar()">&#9776;</button>
+<div>
+<div class="topbar-greeting">Discuss Workspace</div>
+<div class="topbar-date">Real-time academic communication channels</div>
+</div>
+</div>
+
+<div class="content">
+
+<div class="discuss-layout">
+
+<div class="channels-panel">
+
+<div class="channel-title">Channels</div>
+
+<div class="channel-group">
+
+<div class="channel-label">COURSE CHANNELS</div>
+
+<div class="channel active-channel"># web-development</div>
+<div class="channel"># python-help</div>
+<div class="channel"># placements</div>
+<div class="channel"># project-team</div>
+
+</div>
+
+</div>
+
+<div class="chat-panel">
+
+<div class="chat-header">
+
+<div class="chat-header-left">
+<div class="chat-title"># web-development</div>
+<div class="chat-sub">
+Frontend dashboards, responsive layouts and LMS discussions
+</div>
+</div>
+
+<div class="chat-members">24 Members</div>
+
+</div>
+
+<div class="thread-container" id="threadContainer"></div>
+
+<div class="thread-input-area">
+
+<input type="text"
+id="threadInput"
+class="thread-input"
+placeholder="Start a discussion...">
+
+<button class="send-btn" onclick="addReply()">
+Send
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+</body>
+</html>

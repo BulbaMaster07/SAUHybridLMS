@@ -1,0 +1,599 @@
+<!-- courses.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SAU LMS — Courses</title>
+
+  <link rel="stylesheet" href="Stylesheets/dashboard.css">
+  <link rel="stylesheet" href="Stylesheets/courses.css">
+<script src="Scripts/dashboard.js" defer></script>
+<script src="Scripts/courses.js" defer></script>
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+  <div class="sidebar-logo">
+    <div class="logo-name">SAU</div>
+    <div class="logo-sub">Learning Management System</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-label">Main</div>
+
+    <div class="nav-item" onclick="window.location.href='studentdashboard.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#9632;</span>
+      Overview
+    </div>
+    <div class="nav-item active" onclick="window.location.href='courses.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128218;</span>
+      Courses
+    </div>
+    <div class="nav-item" onclick="window.location.href='assignments.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128196;</span>
+      Assignments
+      <span class="nav-badge">4</span>
+    </div>
+    <div class="nav-item" onclick="window.location.href='grades.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128200;</span>
+      Grades
+    </div>
+
+    <div class="nav-label">Tools</div>
+
+    <div class="nav-item" onclick="window.location.href='planner.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128197;</span>
+      Planner
+    </div>
+    <div class="nav-item" onclick="window.location.href='discuss.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128172;</span>
+      Discuss
+    </div>
+    <div class="nav-item" onclick="window.location.href='https://ca-qr.avinya.live/login.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128247;</span>
+      QR Attendance
+    </div>
+    <div class="nav-item" onclick="window.location.href='index1.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128100;</span>
+      Profile
+    </div>
+    <div class="nav-item" onclick="window.location.href='index.html'" style="cursor:pointer;">
+       <span class="nav-icon">&#128682;</span>Logout 
+    </div>
+  </nav>
+
+  <div class="sidebar-user">
+    <div class="user-avatar">AK</div>
+    <div>
+      <div class="user-name" id="dashboard-user-name">Aryan Kumar</div>
+      <div class="user-role">B.Tech CSE &middot; Sem 2</div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+  <!-- TOPBAR -->
+
+  <div class="topbar">
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">&#9776;</button>
+    <div>
+      <div class="topbar-greeting">Your Courses</div>
+      <div class="topbar-date">Track lectures, assignments, analytics and progress</div>
+    </div>
+    <div class="topbar-right">
+      <div class="search-box">&#128269;&nbsp; Search Courses...</div>
+      <div class="icon-btn notif-dot">&#128276;</div>
+      <div class="icon-btn">&#9881;</div>
+    </div>
+  </div>
+
+
+
+  <!-- CONTENT -->
+
+  <div class="content">
+
+    <div class="courses-layout">
+
+      <!-- HERO -->
+
+      <div class="courses-hero">
+
+        <div class="courses-hero-content">
+
+          <div class="courses-eyebrow">
+            Academic Dashboard
+          </div>
+
+          <div class="courses-title">
+            Continue building<br>
+            your academic journey
+          </div>
+
+          <div class="courses-sub">
+            Access lectures, quizzes, assignments,
+            resources and instructor analytics from
+            one intelligent learning workspace.
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- COURSE GRID -->
+
+      <div class="course-grid">
+
+        <!-- WEB DEVELOPMENT -->
+
+        <div class="course-page-card">
+
+          <div class="course-banner web">
+
+            <div class="course-banner-top">
+              <div class="course-tag">Development</div>
+              <div class="course-lessons">22 Lessons</div>
+            </div>
+
+            <div class="course-banner-bottom">
+              <div class="course-banner-title">
+
+                <a href="webdevelopment-course.html" class="course-link">
+
+                Web Development
+                </a>
+            </div>
+
+              <div class="course-banner-prof">
+                Dr. Sharma
+              </div>
+            </div>
+
+          </div>
+
+<div class="course-body" style="display:none;">
+            <div class="course-progress-row">
+              <span>Semester Progress</span>
+              <span>65%</span>
+            </div>
+
+            <div class="course-progress-large">
+              <div class="course-progress-fill"
+                   style="width:65%">
+              </div>
+            </div>
+
+            <div class="course-stats-grid">
+
+              <div class="course-stat">
+                <div class="course-stat-label">Attendance</div>
+                <div class="course-stat-value">96%</div>
+              </div>
+
+              <div class="course-stat">
+                <div class="course-stat-label">Quiz Avg</div>
+                <div class="course-stat-value">91</div>
+              </div>
+
+              <div class="course-stat">
+                <div class="course-stat-label">Rank</div>
+                <div class="course-stat-value">#6</div>
+              </div>
+
+            </div>
+
+            <div class="lecture-preview">
+
+              <div class="lecture-item">
+                <div class="lecture-info">
+                  <div class="lecture-title">
+                    Advanced Flexbox
+                  </div>
+
+                  <div class="lecture-meta">
+                    52 mins · Lecture 14
+                  </div>
+                </div>
+
+                <div class="lecture-status lecture-complete">
+                  Done
+                </div>
+              </div>
+
+              <div class="lecture-item">
+                <div class="lecture-info">
+                  <div class="lecture-title">
+                    Responsive Dashboards
+                  </div>
+
+                  <div class="lecture-meta">
+                    1h 28 mins · Lecture 15
+                  </div>
+                </div>
+
+                <div class="lecture-status lecture-progress">
+                  Current
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="course-footer">
+            <div class="course-streak">
+              🔥 14 day learning streak
+            </div>
+
+            <button class="course-open-btn"
+                    onclick="toggleCourse(this)">
+              Show Course
+            </button>
+          </div>
+
+        </div>
+
+
+
+        <!-- PYTHON -->
+
+        <div class="course-page-card">
+
+          <div class="course-banner python">
+
+            <div class="course-banner-top">
+              <div class="course-tag">Programming</div>
+              <div class="course-lessons">18 Lessons</div>
+            </div>
+
+            <div class="course-banner-bottom">
+              <div class="course-banner-title">
+                Python Programming
+              </div>
+
+              <div class="course-banner-prof">
+                Dr. Seth
+              </div>
+            </div>
+
+          </div>
+
+          <div class="course-body" style="display:none;">
+
+            <div class="course-progress-row">
+              <span>Semester Progress</span>
+              <span>40%</span>
+            </div>
+
+            <div class="course-progress-large">
+              <div class="course-progress-fill"
+                   style="width:40%">
+              </div>
+            </div>
+
+            <div class="course-stats-grid">
+
+              <div class="course-stat">
+                <div class="course-stat-label">Attendance</div>
+                <div class="course-stat-value">92%</div>
+              </div>
+
+              <div class="course-stat">
+                <div class="course-stat-label">Quiz Avg</div>
+                <div class="course-stat-value">88</div>
+              </div>
+
+              <div class="course-stat">
+                <div class="course-stat-label">Rank</div>
+                <div class="course-stat-value">#14</div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="course-footer">
+            <div class="course-streak">
+              🔥 8 day learning streak
+            </div>
+
+            <button class="course-open-btn"
+                    onclick="toggleCourse(this)">
+              Show Course
+            </button>
+          </div>
+
+        </div>
+
+
+
+        <!-- MATHEMATICS -->
+
+        <div class="course-page-card">
+
+          <div class="course-banner math">
+
+            <div class="course-banner-top">
+              <div class="course-tag">Core</div>
+              <div class="course-lessons">20 Lessons</div>
+            </div>
+
+            <div class="course-banner-bottom">
+              <div class="course-banner-title">
+                Mathematics
+              </div>
+
+              <div class="course-banner-prof">
+                Prof. Deshpande
+              </div>
+            </div>
+
+          </div>
+
+          <div class="course-body" style="display:none;">
+
+            <div class="course-progress-row">
+              <span>Semester Progress</span>
+              <span>55%</span>
+            </div>
+
+            <div class="course-progress-large">
+              <div class="course-progress-fill"
+                   style="width:55%">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="course-footer">
+            <div class="course-streak">
+              🔥 6 day learning streak
+            </div>
+
+            <button class="course-open-btn"
+                    onclick="toggleCourse(this)">
+              Show Course
+            </button>
+          </div>
+
+        </div>
+
+
+
+        <!-- DATA STRUCTURES -->
+
+        <div class="course-page-card">
+
+          <div class="course-banner ds">
+
+            <div class="course-banner-top">
+              <div class="course-tag">Programming</div>
+              <div class="course-lessons">24 Lessons</div>
+            </div>
+
+            <div class="course-banner-bottom">
+              <div class="course-banner-title">
+                Data Structures
+              </div>
+
+              <div class="course-banner-prof">
+                Dr. Ashwini
+              </div>
+            </div>
+
+          </div>
+
+          <div class="course-body" style="display:none;">
+
+            <div class="course-progress-row">
+              <span>Semester Progress</span>
+              <span>28%</span>
+            </div>
+
+            <div class="course-progress-large">
+              <div class="course-progress-fill"
+                   style="width:28%">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="course-footer">
+            <div class="course-streak">
+              🔥 3 day learning streak
+            </div>
+
+            <button class="course-open-btn"
+                    onclick="toggleCourse(this)">
+              Show Course
+            </button>
+          </div>
+
+        </div>
+
+
+
+        <!-- ENGLISH -->
+
+        <div class="course-page-card">
+
+          <div class="course-banner english">
+
+            <div class="course-banner-top">
+              <div class="course-tag">Language</div>
+              <div class="course-lessons">16 Lessons</div>
+            </div>
+
+            <div class="course-banner-bottom">
+              <div class="course-banner-title">
+                English
+              </div>
+
+              <div class="course-banner-prof">
+                Dr. Mukherjee
+              </div>
+            </div>
+
+          </div>
+
+          <div class="course-body" style="display:none;">
+
+            <div class="course-progress-row">
+              <span>Semester Progress</span>
+              <span>72%</span>
+            </div>
+
+            <div class="course-progress-large">
+              <div class="course-progress-fill"
+                   style="width:72%">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="course-footer">
+            <div class="course-streak">
+              🔥 16 day learning streak
+            </div>
+
+            <button class="course-open-btn"
+                    onclick="toggleCourse(this)">
+              Show Course
+            </button>
+          </div>
+
+        </div>
+
+
+
+        <!-- DIGITAL LOGIC -->
+
+        <div class="course-page-card">
+
+          <div class="course-banner logic">
+
+            <div class="course-banner-top">
+              <div class="course-tag">Hardware</div>
+              <div class="course-lessons">14 Lessons</div>
+            </div>
+
+            <div class="course-banner-bottom">
+              <div class="course-banner-title">
+                Digital Logic Design
+              </div>
+
+              <div class="course-banner-prof">
+                Dr. Ahuja
+              </div>
+            </div>
+
+          </div>
+
+          <div class="course-body" style="display:none;">
+
+            <div class="course-progress-row">
+              <span>Semester Progress</span>
+              <span>50%</span>
+            </div>
+
+            <div class="course-progress-large">
+              <div class="course-progress-fill"
+                   style="width:50%">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="course-footer">
+            <div class="course-streak">
+              🔥 5 day learning streak
+            </div>
+
+            <button class="course-open-btn"
+                    onclick="toggleCourse(this)">
+              Show Course
+            </button>
+          </div>
+
+        </div>
+
+
+
+        <!-- PHYSICS -->
+
+        <div class="course-page-card">
+
+          <div class="course-banner physics">
+
+            <div class="course-banner-top">
+              <div class="course-tag">Science</div>
+              <div class="course-lessons">14 Lessons</div>
+            </div>
+
+            <div class="course-banner-bottom">
+              <div class="course-banner-title">
+                Physics
+              </div>
+
+              <div class="course-banner-prof">
+                Dr. Bhandari
+              </div>
+            </div>
+
+          </div>
+
+          <div class="course-body" style="display:none;">
+
+            <div class="course-progress-row">
+              <span>Semester Progress</span>
+              <span>50%</span>
+            </div>
+
+            <div class="course-progress-large">
+              <div class="course-progress-fill"
+                   style="width:50%">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="course-footer">
+            <div class="course-streak">
+              🔥 7 day learning streak
+            </div>
+
+            <button class="course-open-btn"
+                    onclick="toggleCourse(this)">
+              Show Course
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

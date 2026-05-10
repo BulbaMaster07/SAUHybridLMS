@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>
+    Web Development — SAU LMS
+  </title>
+
+  <link rel="stylesheet"
+        href="Stylesheets/dashboard.css">
+
+  <link rel="stylesheet"
+        href="Stylesheets/course-view.css">
+    <script src="Scripts/dashboard.js" defer></script>
+    <script src="Scripts/course-view.js" defer></script>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+
+    <div class="sidebar-logo">
+
+      <div class="logo-name">
+        SAU
+      </div>
+
+      <div class="logo-sub">
+        Learning Portal
+      </div>
+
+    </div>
+
+    <nav class="sidebar-nav">
+    <div class="nav-label">Main</div>
+
+    <div class="nav-item" onclick="window.location.href='studentdashboard.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#9632;</span>
+      Overview
+    </div>
+    <div class="nav-item" onclick="window.location.href='courses.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128218;</span>
+      Courses
+    </div>
+    <div class="nav-item active" onclick="window.location.href='assignments.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128196;</span>
+      Assignments
+      <span class="nav-badge">4</span>
+    </div>
+    <div class="nav-item" onclick="window.location.href='grades.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128200;</span>
+      Grades
+    </div>
+
+    <div class="nav-label">Tools</div>
+
+    <div class="nav-item" onclick="window.location.href='planner.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128197;</span>
+      Planner
+    </div>
+    <div class="nav-item" onclick="window.location.href='discuss.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128172;</span>
+      Discuss
+    </div>
+    <div class="nav-item" onclick="window.location.href='https://ca-qr.avinya.live/login.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128247;</span>
+      QR Attendance
+    </div>
+    <div class="nav-item" onclick="window.location.href='index1.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128100;</span>
+      Profile
+    </div>
+    <div class="nav-item" onclick="window.location.href='index.html'" style="cursor:pointer;">
+       <span class="nav-icon">&#128682;</span>Logout 
+    </div>
+  </nav>
+
+  <div class="sidebar-user">
+    <div class="user-avatar">AK</div>
+    <div>
+      <div class="user-name">Aryan Kumar</div>
+      <div class="user-role">B.Tech CSE &middot; Sem 2</div>
+    </div>
+  </div>
+
+  </aside>
+
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+  <!-- MAIN -->
+
+  <div class="main">
+
+    <div class="topbar">
+      <button class="mobile-menu-btn" onclick="toggleSidebar()">&#9776;</button>
+      <div>
+        <div class="topbar-greeting">Web Development</div>
+        <div class="topbar-date">Statistics, lectures and uploaded resources</div>
+      </div>
+    </div>
+
+
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+      <div class="course-view-layout">
+
+        <!-- HERO -->
+
+        <div class="subject-hero">
+
+          <div class="subject-code">
+            CSE-106 · Semester II
+          </div>
+
+          <div class="subject-title">
+            Modern Web<br>
+            Development
+          </div>
+
+          <div class="subject-sub">
+
+            Explore frontend architecture,
+            responsive layouts, advanced
+            CSS systems, JavaScript logic,
+            accessibility, UI engineering
+            and modern dashboard design.
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ANALYTICS -->
+
+        <div class="analytics-grid">
+
+          <div class="analytics-card">
+
+            <div class="analytics-label">
+              Attendance
+            </div>
+
+            <div class="analytics-value">
+              96%
+            </div>
+
+            <div class="analytics-sub">
+              42 / 44 lectures attended
+            </div>
+
+          </div>
+
+          <div class="analytics-card">
+
+            <div class="analytics-label">
+              Quiz Average
+            </div>
+
+            <div class="analytics-value">
+              91
+            </div>
+
+            <div class="analytics-sub">
+              Top 10% in class
+            </div>
+
+          </div>
+
+          <div class="analytics-card">
+
+            <div class="analytics-label">
+              Assignment Completion
+            </div>
+
+            <div class="analytics-value">
+              88%
+            </div>
+
+            <div class="analytics-sub">
+              8 / 9 submitted
+            </div>
+
+          </div>
+
+          <div class="analytics-card">
+
+            <div class="analytics-label">
+              Current Rank
+            </div>
+
+            <div class="analytics-value">
+              #6
+            </div>
+
+            <div class="analytics-sub">
+              Based on semester performance
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- LECTURES -->
+
+        <div class="course-section">
+
+          <div class="section-title">
+            Lectures
+          </div>
+
+          <div class="lecture-list"
+               id="lectureList">
+
+          </div>
+
+        </div>
+
+
+
+        <!-- RESOURCES -->
+
+        <div class="course-section">
+
+          <div class="section-title">
+            Uploaded Resources
+          </div>
+
+          <div class="resource-grid"
+               id="resourceGrid">
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+ 
+
+</body>
+</html>

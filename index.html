@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAU Learning Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Stylesheets/login.css">
+<script src="Scripts/login.js" defer></script>
+</head>
+<body>
+
+<!-- ── OOBE SPLASH ── -->
+<div id="oobe">
+  <div id="oobe-bg"></div>
+  <div id="oobe-dots"></div>
+  <div id="oobe-shimmer"></div>
+
+  <div id="oobe-logo-wrap">
+    <!-- rings around the logo -->
+    <div class="oobe-ring oobe-ring-1"></div>
+    <div class="oobe-ring oobe-ring-2"></div>
+    <div class="oobe-ring oobe-ring-3"></div>
+
+    <img id="oobe-logo-img"
+         src="https://sau.int/wp-content/uploads/2022/12/sau-logo-removebg-preview.png"
+         alt="South Asian University"
+         onerror="this.style.opacity='0'">
+  </div>
+
+  <div id="oobe-label">South Asian University</div>
+  <div id="oobe-sub">Learning Management System · CSE Department</div>
+</div>
+
+<!-- ── PERSISTENT AMBIENT BG ── -->
+<div class="bg-canvas">
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+</div>
+<div class="dot-grid"></div>
+
+<!-- ── PERMANENT FLOATING LOGO (side panel after OOBE) ── -->
+<div id="logo-float">
+  <div class="float-ring float-ring-2"></div>
+  <div class="float-ring float-ring-1"></div>
+  <img src="https://sau.int/wp-content/uploads/2022/12/sau-logo-removebg-preview.png"
+       alt="South Asian University"
+       onerror="this.style.opacity='0'">
+  <div id="float-label">South Asian<br>University</div>
+</div>
+
+<!-- ── MAIN PAGE CONTENT ── -->
+<div class="page">
+
+  <nav>
+    <div class="nav-logo">
+      <img src="https://sau.int/wp-content/uploads/2022/12/sau-logo-removebg-preview.png" alt="SAU Logo" onerror="this.style.display='none'">
+      <span class="logo-mark">SAU</span>
+      <div class="logo-divider"></div>
+      <span class="logo-sub">Learning Management System</span>
+    </div>
+    <span class="nav-tag">&#127979; Academic Year 2025-29</span>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-eyebrow">SAU · CSE Department</div>
+    <h1>One portal.<br><em>Every perspective.</em></h1>
+    <p class="hero-sub">A unified learning management system for students and faculty of SAU's Computer Science department.</p>
+    <p class="hero-meta">Select your role below to enter your dashboard</p>
+  </div>
+
+  <div class="sep">
+    <div class="sep-line"></div>
+    <span class="sep-label">Choose your dashboard</span>
+    <div class="sep-line"></div>
+  </div>
+
+  <div class="cards">
+    <!-- STUDENT -->
+    <a class="portal-card student" href="studentdashboard.html">
+      <div class="card-icon">&#127891;</div>
+      <div class="card-role">Student Portal</div>
+      <div class="card-title">Student<br>Dashboard</div>
+      <p class="card-desc">Track your courses, assignments, grades, attendance, and academic progress all in one place.</p>
+      <div class="card-features">
+        <div class="feature-item"><div class="feature-dot"></div>Course progress &amp; modules</div>
+        <div class="feature-item"><div class="feature-dot"></div>Assignment deadlines &amp; grades</div>
+        <div class="feature-item"><div class="feature-dot"></div>CGPA tracker &amp; academic standing</div>
+        <div class="feature-item"><div class="feature-dot"></div>Schedule, planner &amp; QR attendance</div>
+      </div>
+      <div class="card-actions">
+        <span class="card-cta">Enter Student View <span class="cta-arrow">&#8594;</span></span>
+        <div class="or-divider"><div class="or-line"></div><span class="or-text">or</span><div class="or-line"></div></div>
+        <span class="google-btn">
+          <img class="google-icon" src="images/google-icon.svg" alt="Google">
+          Continue with Google
+        </span>
+      </div>
+    </a>
+
+    <!-- TEACHER -->
+    <a class="portal-card teacher" href="teacher-dashboard.html">
+      <div class="card-icon">&#128218;</div>
+      <div class="card-role">Faculty Portal</div>
+      <div class="card-title">Teacher's<br>Dashboard</div>
+      <p class="card-desc">Manage your courses, grade submissions, create quizzes, and monitor student performance across all classes.</p>
+      <div class="card-features">
+        <div class="feature-item"><div class="feature-dot"></div>Course &amp; student management</div>
+        <div class="feature-item"><div class="feature-dot"></div>Assignment grading &amp; gradebook</div>
+        <div class="feature-item"><div class="feature-dot"></div>Quiz assessment builder</div>
+        <div class="feature-item"><div class="feature-dot"></div>Announcements &amp; class planner</div>
+      </div>
+      <div class="card-actions">
+        <span class="card-cta">Enter Faculty View <span class="cta-arrow">&#8594;</span></span>
+        <div class="or-divider"><div class="or-line"></div><span class="or-text">or</span><div class="or-line"></div></div>
+        <span class="google-btn">
+          <img class="google-icon" src="images/google-icon.svg" alt="Google">
+          Continue with Google
+        </span>
+      </div>
+    </a>
+  </div>
+
+  <div class="stats-strip">
+    <div class="stat-item"><div class="stat-num" data-target="94">0</div><div class="stat-lbl">Students</div></div>
+    <div class="stat-item"><div class="stat-num" data-target="4">0</div><div class="stat-lbl">Courses</div></div>
+    <div class="stat-item"><div class="stat-num" data-target="8.7" data-decimal="1">0</div><div class="stat-lbl">Avg CGPA</div></div>
+    <div class="stat-item"><div class="stat-num">Sem 2</div><div class="stat-lbl">Current Term</div></div>
+  </div>
+
+  <footer>
+    <span class="footer-logo">SAU</span>
+    <span class="footer-text">B.Tech CSE &middot; Semester 2 &middot; 2025-29</span>
+    <div class="footer-links">
+      <a href="homepage.html">Home</a>
+      <a href="about.html">About Us</a>
+    </div>
+  </footer>
+</div>

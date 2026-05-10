@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAU LMS — Teacher Dashboard</title>
+<link rel="stylesheet" href="Stylesheets/teacher-dashboard.css">
+<script src="Scripts/teacher-dashboard.js" defer></script>
+</head>
+<body>
+ 
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-name">SAU</div>
+    <div class="logo-sub">Learning Management System</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-label">Main</div>
+    <div class="nav-item active" onclick="showView('overview',this)">
+      <span class="nav-icon">&#9632;</span>Overview
+    </div>
+    <div class="nav-item" onclick="showView('courses',this)">
+      <span class="nav-icon">&#128218;</span>My Courses
+    </div>
+    <div class="nav-item" onclick="showView('students',this)">
+      <span class="nav-icon">&#128100;</span>Students
+    </div>
+    <div class="nav-item" onclick="showView('assignments',this)">
+      <span class="nav-icon">&#128196;</span>Assignments
+      <span class="nav-badge" id="assign-badge">7</span>
+    </div>
+    <div class="nav-item" onclick="showView('grades',this)">
+      <span class="nav-icon">&#128200;</span>Grades
+    </div>
+    <div class="nav-item" onclick="showView('quizzes',this)">
+      <span class="nav-icon">&#9999;&#65039;</span>Quiz Assessments
+    </div>
+    <div class="nav-label">Tools</div>
+    <div class="nav-item" onclick="showView('planner',this)">
+      <span class="nav-icon">&#128197;</span>Planner
+    </div>
+    <div class="nav-item" onclick="window.location.href='https://ca-qr.avinya.live/login.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128247;</span>QR Attendance
+    </div>
+    <div class="nav-item" onclick="showView('announcements',this)">
+      <span class="nav-icon">&#128226;</span>Announcements
+    </div>
+    <div class="nav-item" onclick="window.location.href='teacher-profile.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128100;</span>
+      Profile
+    </div>
+    <div class="nav-item" onclick="window.location.href='index.html'" style="cursor:pointer;">
+       <span class="nav-icon">&#128682;</span>Logout 
+    </div>
+  </nav>
+  <div class="sidebar-user">
+    <div class="user-avatar">DS</div>
+    <div>
+      <div class="user-name">Dr. Sharma</div>
+      <div class="user-role">Faculty &middot; CSE Dept.</div>
+    </div>
+  </div>
+</aside>
+ 
+<!-- SIDEBAR OVERLAY (mobile backdrop)-->
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!--MAIN-->
+<div class="main">
+ 
+  <!-- TOPBAR -->
+  
+  <div class="topbar">
+  <button class="mobile-menu-btn" onclick="toggleSidebar()">
+  ☰
+  </button>
+    <div>
+      <div class="topbar-greeting">Good morning, Dr. Sharma &#128075;</div>
+      <div class="topbar-date" id="topbar-date"></div>
+    </div>
+    <div class="topbar-right">
+      <div class="search-box">&#128269;&nbsp; Search students, courses...</div>
+      <div class="teacher-badge">FACULTY</div>
+      <div class="icon-btn notif-dot" title="Notifications">&#128276;</div>
+      <div class="icon-btn" title="Settings" onclick="window.location.href='teacher-settings.html'">&#9881;</div>
+    </div>
+  </div>
+ 
+  <!--VIEW: OVERVIEW-->
+  <div id="view-overview" class="view active">
+    <div class="content">
+      <div class="top-row">
+        <div class="hero">
+          <div class="hero-orb1"></div>
+          <div class="hero-orb2"></div>
+          <div class="hero-text">
+            <div class="hero-eyebrow">Faculty Dashboard &nbsp;&middot;&nbsp; CSE Department</div>
+            <div class="hero-title">Welcome back,<br><em>Dr. Sharma</em></div>
+            <div class="hero-sub">7 submissions pending grading &middot; Quiz closes in 2 days</div>
+          </div>
+          <button class="hero-cta" onclick="showView('assignments', document.querySelector('[onclick*=assignments]'))">Review Submissions &rarr;</button>
+        </div>
+        <div class="card card-pad stat-card">
+          <div class="stat-val">94</div>
+          <div class="stat-label">Students</div>
+          <span class="stat-trend trend-up">&#8593; 4 Courses</span>
+        </div>
+        <div class="card card-pad stat-card">
+          <div class="stat-val">7</div>
+          <div class="stat-label">Pending</div>
+          <span class="stat-trend trend-warn">&#9889; Grade Now</span>
+        </div>
+        <div class="card card-pad stat-card">
+          <div class="stat-val">81</div>
+          <div class="stat-label">Avg Score</div>
+          <span class="stat-trend trend-up">&#8593; Class Avg</span>
+        </div>
+        <div class="card card-pad stat-card">
+          <div class="stat-val">4</div>
+          <div class="stat-label">Courses</div>
+          <span class="stat-trend trend-up">&#8593; Active</span>
+        </div>
+      </div>
+ 
+      <div class="card card-pad">
+        <div class="card-header">
+          <span class="card-title">My Courses</span>
+          <span class="card-action" onclick="showView('courses', document.querySelector('[onclick*=courses]'))">View all &rarr;</span>
+        </div>
+        <div class="courses-scroll">
+          <div class="course-card" onclick="showView('courses',null)">
+            <div class="course-icon" style="background:#dce7fd;">&#128187;</div>
+            <div class="course-name">Web Development</div>
+            <div class="course-meta">22 lessons &middot; Room 302</div>
+            <div class="course-students">&#128100; 28 students</div>
+          </div>
+          <div class="course-card" onclick="showView('courses',null)">
+            <div class="course-icon" style="background:#fef3dc;">&#129302;</div>
+            <div class="course-name">Machine Learning</div>
+            <div class="course-meta">18 lessons &middot; Lab 101</div>
+            <div class="course-students">&#128100; 24 students</div>
+          </div>
+          <div class="course-card" onclick="showView('courses',null)">
+            <div class="course-icon" style="background:#d6f5e7;">&#128451;</div>
+            <div class="course-name">DBMS</div>
+            <div class="course-meta">20 lessons &middot; Room 204</div>
+            <div class="course-students">&#128100; 22 students</div>
+          </div>
+          <div class="course-card" onclick="showView('courses',null)">
+            <div class="course-icon" style="background:#fde8e8;">&#128268;</div>
+            <div class="course-name">Computer Networks</div>
+            <div class="course-meta">24 lessons &middot; Room 410</div>
+            <div class="course-students">&#128100; 20 students</div>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="grid-2-1">
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="card card-pad">
+            <div class="card-header">
+              <span class="card-title">Recent Submissions</span>
+              <span class="card-action" onclick="showView('assignments',document.querySelector('[onclick*=assignments]'))">Grade all &rarr;</span>
+            </div>
+            <div class="data-table-wrap"><table class="data-table">
+              <thead><tr><th>Student</th><th>Assignment</th><th>Course</th><th>Submitted</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Aryan Kumar</strong></td><td>React Final Project</td><td>Web Dev</td><td>Today, 9:14 AM</td><td><span class="badge badge-amber">Pending</span></td></tr>
+                <tr><td><strong>Priya Nair</strong></td><td>Neural Network Report</td><td>ML</td><td>Today, 8:02 AM</td><td><span class="badge badge-amber">Pending</span></td></tr>
+                <tr><td><strong>Rohit Singh</strong></td><td>ER Diagram Report</td><td>DBMS</td><td>Yesterday</td><td><span class="badge badge-amber">Pending</span></td></tr>
+                <tr><td><strong>Sneha Rao</strong></td><td>Python Lab</td><td>ML</td><td>Yesterday</td><td><span class="badge badge-green">Graded</span></td></tr>
+                <tr><td><strong>Karan Mehta</strong></td><td>TCP/IP Assignment</td><td>Networks</td><td>2 days ago</td><td><span class="badge badge-green">Graded</span></td></tr>
+              </tbody>
+            </table></div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-header">
+              <span class="card-title">Class Performance</span>
+              <span class="card-action" onclick="showView('grades',document.querySelector('[onclick*=grades]'))">Full gradebook &rarr;</span>
+            </div>
+            <div class="grade-row"><div class="grade-subject">Web Development</div><div class="grade-bar-wrap"><div class="grade-bar" style="width:85%;background:var(--green);"></div></div><div class="grade-score" style="color:var(--green);">85</div></div>
+            <div class="grade-row"><div class="grade-subject">Machine Learning</div><div class="grade-bar-wrap"><div class="grade-bar" style="width:78%;background:var(--accent);"></div></div><div class="grade-score" style="color:var(--accent);">78</div></div>
+            <div class="grade-row"><div class="grade-subject">DBMS</div><div class="grade-bar-wrap"><div class="grade-bar" style="width:88%;background:var(--green);"></div></div><div class="grade-score" style="color:var(--green);">88</div></div>
+            <div class="grade-row"><div class="grade-subject">Computer Networks</div><div class="grade-bar-wrap"><div class="grade-bar" style="width:72%;background:var(--amber);"></div></div><div class="grade-score" style="color:var(--amber);">72</div></div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-header">
+              <span class="card-title">Quiz Assessments</span>
+              <button class="btn-primary" onclick="openModal('modal-create-quiz')">&#43; Create Quiz</button>
+            </div>
+            <div class="quiz-list" id="overview-quiz-list">
+              <div class="quiz-item">
+                <div class="quiz-icon">&#9999;&#65039;</div>
+                <div class="quiz-body"><div class="quiz-name">Neural Network Quiz</div><div class="quiz-meta">Machine Learning &middot; Due 14 May &middot; 22/24 attempted</div></div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;"><span class="badge badge-green">Active</span><div class="quiz-stats"><div class="quiz-score">76</div><div class="quiz-score-label">avg score</div></div></div>
+              </div>
+              <div class="quiz-item">
+                <div class="quiz-icon">&#128451;</div>
+                <div class="quiz-body"><div class="quiz-name">ER Diagram Quiz</div><div class="quiz-meta">DBMS &middot; Due 18 May &middot; 10/22 attempted</div></div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;"><span class="badge badge-amber">In Progress</span><div class="quiz-stats"><div class="quiz-score">83</div><div class="quiz-score-label">avg score</div></div></div>
+              </div>
+              <div class="quiz-item">
+                <div class="quiz-icon">&#128187;</div>
+                <div class="quiz-body"><div class="quiz-name">HTML &amp; CSS Basics</div><div class="quiz-meta">Web Development &middot; Closed &middot; 28/28 attempted</div></div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;"><span class="badge badge-red">Closed</span><div class="quiz-stats"><div class="quiz-score">91</div><div class="quiz-score-label">avg score</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="right-stack">
+          <div class="card card-pad">
+            <div class="mini-cal-header">
+              <span class="cal-month" id="cal-month-label"></span>
+              <div class="cal-nav">
+                <button onclick="changeMonth(-1)">&#8249;</button>
+                <button onclick="changeMonth(1)">&#8250;</button>
+              </div>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+            <div class="upcoming-events">
+              <div class="event-row"><div class="event-dot" style="background:var(--accent);"></div><div class="event-name">Neural Network Quiz Due</div><div class="event-date">14 May</div></div>
+              <div class="event-row"><div class="event-dot" style="background:var(--amber);"></div><div class="event-name">ER Diagram Quiz Due</div><div class="event-date">18 May</div></div>
+              <div class="event-row"><div class="event-dot" style="background:var(--red);"></div><div class="event-name">Mid-Sem Grade Submission</div><div class="event-date">22 May</div></div>
+            </div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-header" style="margin-bottom:10px;"><span class="card-title">Quick Notes</span></div>
+            <textarea class="notes-area" id="teacher-notes" placeholder="Jot something down..."></textarea>
+            <div class="btn-row">
+              <button class="btn-primary" onclick="saveNote()">Save</button>
+              <button class="btn-ghost" onclick="clearNote()">Clear</button>
+              <span class="note-saved" id="note-saved">Saved &#10003;</span>
+            </div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-header" style="margin-bottom:14px;"><span class="card-title">Dept. Updates</span></div>
+            <div class="feed-item">
+              <div class="feed-icon-wrap" style="background:var(--red-light);">&#128203;</div>
+              <div style="flex:1;min-width:0;"><div class="feed-title">Mid-Sem Exam Schedule Released</div><div class="feed-meta">Academic Office &middot; 2 hours ago</div></div>
+              <span class="feed-badge" style="background:var(--amber-light);color:var(--amber);">Notice</span>
+            </div>
+            <div class="feed-item">
+              <div class="feed-icon-wrap" style="background:var(--accent-light);">&#127942;</div>
+              <div style="flex:1;min-width:0;"><div class="feed-title">Hackathon Mentors Needed</div><div class="feed-meta">Student Cell &middot; Yesterday</div></div>
+              <span class="feed-badge" style="background:var(--accent-light);color:var(--accent);">Event</span>
+            </div>
+            <div class="feed-item">
+              <div class="feed-icon-wrap" style="background:var(--green-light);">&#128196;</div>
+              <div style="flex:1;min-width:0;"><div class="feed-title">Grade Submission Deadline: 22 May</div><div class="feed-meta">Registrar &middot; 2 days ago</div></div>
+              <span class="feed-badge" style="background:var(--red-light);color:var(--red);">Urgent</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!--VIEW: COURSES-->
+    <!--VIEW: COURSES with Resources & Details -->
+  <div id="view-courses" class="view">
+    <div class="content">
+      <div class="page-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div>
+          <div class="page-title">My Courses</div>
+          <div class="page-sub">Manage course details, syllabus, and learning resources</div>
+        </div>
+        <button class="btn-primary" onclick="openModal('modal-add-course')" style="display:flex; align-items:center; gap:6px;">&#43; Add New Course</button>
+      </div>
+      <div id="courses-grid-container" style="display:flex; flex-direction:column; gap:20px;"></div>
+    </div>
+  </div>
+ 
+  <!--VIEW: STUDENTS (with pagination)-->
+  <div id="view-students" class="view">
+    <div class="content">
+      <div class="page-header" style="display:flex;align-items:flex-start;justify-content:space-between;">
+        <div><div class="page-title">Students</div><div class="page-sub">All enrolled students across your courses</div></div>
+        <input class="form-input" style="width:240px;" placeholder="&#128269; Search by name or course..." oninput="filterStudents(this.value)" id="student-search">
+      </div>
+      <div class="card card-pad">
+        <div class="card-header"><span class="card-title">All Students</span><span class="card-action" id="students-count-label">Showing 1–5 of 8</span></div>
+        <table class="data-table" id="students-table">
+          <thead><tr><th>Name</th><th>Course</th><th>Attendance</th><th>CGPA</th><th>Last Active</th><th>Status</th></tr></thead>
+          <tbody id="students-tbody"></tbody>
+        </table>
+        <div class="pagination">
+          <div class="pagination-info" id="students-page-info">Page 1 of 2</div>
+          <div class="pagination-controls" id="students-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!--VIEW: ASSIGNMENTS-->
+  <div id="view-assignments" class="view">
+    <div class="content">
+      <div class="page-header" style="display:flex;align-items:flex-start;justify-content:space-between;">
+        <div><div class="page-title">Assignments</div><div class="page-sub">Manage and grade student assignments</div></div>
+        <button class="btn-primary" onclick="openModal('modal-create-assignment')">&#43; New Assignment</button>
+      </div>
+      <div class="card card-pad">
+        <div class="card-header"><span class="card-title">All Assignments</span></div>
+        <table class="data-table">
+          <thead><tr><th>Title</th><th>Course</th><th>Due Date</th><th>Submissions</th><th>Graded</th><th>Avg Score</th><th>Action</th></tr></thead>
+          <tbody id="assignments-tbody">
+            <tr><td><strong>React Final Project</strong></td><td>Web Dev</td><td>10 May</td><td>24/28</td><td>17/24</td><td style="color:var(--green);font-weight:700;">88</td><td><span class="card-action">Grade</span></td></tr>
+            <tr><td><strong>Neural Network Report</strong></td><td>ML</td><td>14 May</td><td>20/24</td><td>13/20</td><td style="color:var(--accent);font-weight:700;">76</td><td><span class="card-action">Grade</span></td></tr>
+            <tr><td><strong>ER Diagram Report</strong></td><td>DBMS</td><td>18 May</td><td>12/22</td><td>12/12</td><td style="color:var(--green);font-weight:700;">91</td><td><span class="card-action">View</span></td></tr>
+            <tr><td><strong>Python Lab Submission</strong></td><td>ML</td><td>20 May</td><td>8/24</td><td>0/8</td><td style="color:var(--muted);">—</td><td><span class="card-action">Grade</span></td></tr>
+            <tr><td><strong>TCP/IP Assignment</strong></td><td>Networks</td><td>22 May</td><td>15/20</td><td>15/15</td><td style="color:var(--accent);font-weight:700;">79</td><td><span class="card-action">View</span></td></tr>
+            <tr><td><strong>SQL Query Lab</strong></td><td>DBMS</td><td>25 May</td><td>5/22</td><td>0/5</td><td style="color:var(--muted);">—</td><td><span class="card-action">Grade</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+ 
+  <!--VIEW: GRADES-->
+  <div id="view-grades" class="view">
+    <div class="content">
+      <div class="page-header"><div class="page-title">Grades</div><div class="page-sub">Class performance overview</div></div>
+      <div class="grid-2">
+        <div class="card card-pad">
+          <div class="card-header"><span class="card-title">Web Development — Class Scores</span></div>
+          <div class="grade-row"><div class="grade-subject">Aryan Kumar</div><div class="grade-bar-wrap" style="max-width:160px;"><div class="grade-bar" style="width:92%;background:var(--green);"></div></div><div class="grade-score" style="color:var(--green);">92</div></div>
+          <div class="grade-row"><div class="grade-subject">Karan Mehta</div><div class="grade-bar-wrap" style="max-width:160px;"><div class="grade-bar" style="width:88%;background:var(--green);"></div></div><div class="grade-score" style="color:var(--green);">88</div></div>
+          <div class="grade-row"><div class="grade-subject">Vikram Patel</div><div class="grade-bar-wrap" style="max-width:160px;"><div class="grade-bar" style="width:81%;background:var(--accent);"></div></div><div class="grade-score" style="color:var(--accent);">81</div></div>
+          <div class="grade-row"><div class="grade-subject">Priya Nair</div><div class="grade-bar-wrap" style="max-width:160px;"><div class="grade-bar" style="width:79%;background:var(--accent);"></div></div><div class="grade-score" style="color:var(--accent);">79</div></div>
+          <div class="grade-row"><div class="grade-subject">Rohit Singh</div><div class="grade-bar-wrap" style="max-width:160px;"><div class="grade-bar" style="width:64%;background:var(--amber);"></div></div><div class="grade-score" style="color:var(--amber);">64</div></div>
+        </div>
+        <div class="card card-pad">
+          <div class="card-header"><span class="card-title">Machine Learning — Class Scores</span></div>
+          <div class="grade-row"><div class="grade-subject">Sneha Rao</div><div class="grade-bar-wrap" style="max-width:160px;"><div class="grade-bar" style="width:94%;background:var(--green);"></div></div><div class="grade-score" style="color:var(--green);">94</div></div>
+          <div class="grade-row"><div class="grade-subject">Aryan Kumar</div><div class="grade-bar-wrap" style="max-width:160px;"><div class="grade-bar" style="width:82%;background:var(--accent);"></div></div><div class="grade-score" style="color:var(--accent);">82</div></div>
+          <div class="grade-row"><div class="grade-subject">Priya Nair</div><div class="grade-bar-wrap" style="max-width:160px;"><div class="grade-bar" style="width:77%;background:var(--accent);"></div></div><div class="grade-score" style="color:var(--accent);">77</div></div>
+          <div class="grade-row"><div class="grade-subject">Vikram Patel</div><div class="grade-bar-wrap" style="max-width:160px;"><div class="grade-bar" style="width:71%;background:var(--amber);"></div></div><div class="grade-score" style="color:var(--amber);">71</div></div>
+          <div class="grade-row"><div class="grade-subject">Anita Desai</div><div class="grade-bar-wrap" style="max-width:160px;"><div class="grade-bar" style="width:58%;background:var(--red);"></div></div><div class="grade-score" style="color:var(--red);">58</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!--VIEW: QUIZZES-->
+  <div id="view-quizzes" class="view">
+    <div class="content">
+      <div class="page-header" style="display:flex;align-items:flex-start;justify-content:space-between;">
+        <div><div class="page-title">Quiz Assessments</div><div class="page-sub">Create, manage and review quiz results</div></div>
+        <button class="btn-primary" onclick="openModal('modal-create-quiz')">&#43; Create Quiz</button>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:4px;">
+        <div class="tabs">
+          <div class="tab active" onclick="switchQuizTab(this,'qt-all')">All Quizzes</div>
+          <div class="tab" onclick="switchQuizTab(this,'qt-active')">Active</div>
+          <div class="tab" onclick="switchQuizTab(this,'qt-closed')">Closed</div>
+        </div>
+      </div>
+      <div id="qt-all">
+        <div class="quiz-list" id="quiz-list-all">
+          <div class="quiz-item">
+            <div class="quiz-icon">&#9999;&#65039;</div>
+            <div class="quiz-body"><div class="quiz-name">Neural Network Quiz</div><div class="quiz-meta">Machine Learning &middot; 10 Questions &middot; 30 min &middot; Due 14 May</div></div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div style="text-align:center;"><div style="font-size:22px;font-weight:700;font-family:var(--font-serif);color:var(--accent);">22/24</div><div style="font-size:10px;color:var(--muted);">Attempted</div></div>
+              <div style="text-align:center;"><div style="font-size:22px;font-weight:700;font-family:var(--font-serif);color:var(--green);">76</div><div style="font-size:10px;color:var(--muted);">Avg Score</div></div>
+              <span class="badge badge-green">Active</span>
+              <span class="card-action" onclick="openModal('modal-quiz-results')">Results</span>
+            </div>
+          </div>
+          <div class="quiz-item">
+            <div class="quiz-icon">&#128451;</div>
+            <div class="quiz-body"><div class="quiz-name">ER Diagram Quiz</div><div class="quiz-meta">DBMS &middot; 8 Questions &middot; 20 min &middot; Due 18 May</div></div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div style="text-align:center;"><div style="font-size:22px;font-weight:700;font-family:var(--font-serif);color:var(--accent);">10/22</div><div style="font-size:10px;color:var(--muted);">Attempted</div></div>
+              <div style="text-align:center;"><div style="font-size:22px;font-weight:700;font-family:var(--font-serif);color:var(--green);">83</div><div style="font-size:10px;color:var(--muted);">Avg Score</div></div>
+              <span class="badge badge-amber">In Progress</span>
+              <span class="card-action" onclick="openModal('modal-quiz-results')">Results</span>
+            </div>
+          </div>
+          <div class="quiz-item">
+            <div class="quiz-icon">&#128187;</div>
+            <div class="quiz-body"><div class="quiz-name">HTML &amp; CSS Basics</div><div class="quiz-meta">Web Development &middot; 12 Questions &middot; 25 min &middot; Closed</div></div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div style="text-align:center;"><div style="font-size:22px;font-weight:700;font-family:var(--font-serif);color:var(--accent);">28/28</div><div style="font-size:10px;color:var(--muted);">Attempted</div></div>
+              <div style="text-align:center;"><div style="font-size:22px;font-weight:700;font-family:var(--font-serif);color:var(--green);">91</div><div style="font-size:10px;color:var(--muted);">Avg Score</div></div>
+              <span class="badge badge-red">Closed</span>
+              <span class="card-action" onclick="openModal('modal-quiz-results')">Results</span>
+            </div>
+          </div>
+          <div class="quiz-item">
+            <div class="quiz-icon">&#128268;</div>
+            <div class="quiz-body"><div class="quiz-name">OSI Model Quiz</div><div class="quiz-meta">Computer Networks &middot; 6 Questions &middot; 15 min &middot; Closed</div></div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div style="text-align:center;"><div style="font-size:22px;font-weight:700;font-family:var(--font-serif);color:var(--accent);">19/20</div><div style="font-size:10px;color:var(--muted);">Attempted</div></div>
+              <div style="text-align:center;"><div style="font-size:22px;font-weight:700;font-family:var(--font-serif);color:var(--amber);">74</div><div style="font-size:10px;color:var(--muted);">Avg Score</div></div>
+              <span class="badge badge-red">Closed</span>
+              <span class="card-action" onclick="openModal('modal-quiz-results')">Results</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="qt-active" style="display:none;">
+        <div class="quiz-list" id="quiz-list-active">
+          <div class="quiz-item">
+            <div class="quiz-icon">&#9999;&#65039;</div>
+            <div class="quiz-body"><div class="quiz-name">Neural Network Quiz</div><div class="quiz-meta">Machine Learning &middot; Due 14 May</div></div>
+            <span class="badge badge-green">Active</span>
+          </div>
+          <div class="quiz-item">
+            <div class="quiz-icon">&#128451;</div>
+            <div class="quiz-body"><div class="quiz-name">ER Diagram Quiz</div><div class="quiz-meta">DBMS &middot; Due 18 May</div></div>
+            <span class="badge badge-amber">In Progress</span>
+          </div>
+        </div>
+      </div>
+      <div id="qt-closed" style="display:none;">
+        <div class="quiz-list" id="quiz-list-closed">
+          <div class="quiz-item">
+            <div class="quiz-icon">&#128187;</div>
+            <div class="quiz-body"><div class="quiz-name">HTML &amp; CSS Basics</div><div class="quiz-meta">Web Development &middot; Avg: 91</div></div>
+            <span class="badge badge-red">Closed</span>
+          </div>
+          <div class="quiz-item">
+            <div class="quiz-icon">&#128268;</div>
+            <div class="quiz-body"><div class="quiz-name">OSI Model Quiz</div><div class="quiz-meta">Computer Networks &middot; Avg: 74</div></div>
+            <span class="badge badge-red">Closed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- ══════════════ VIEW: PLANNER (merged from planner.html) ══════════════ -->
+  <div id="view-planner" class="view">
+    <div class="content">
+      <div class="planner-layout">
+        <div class="planner-hero">
+          <div class="planner-eyebrow">Productivity System</div>
+          <div class="planner-title">Organize your<br>academic workflow</div>
+          <div class="planner-sub">Track events, tasks, deadlines and brainstorming ideas — all in one intelligent planning workspace.</div>
+        </div>
+ 
+        <div class="planner-grid">
+          <!-- FULL CALENDAR -->
+          <div class="calendar-panel">
+            <div class="planner-calendar-header">
+              <div class="planner-calendar-month" id="plannerCalMonth">May 2026</div>
+              <div class="planner-cal-actions">
+                <button class="planner-cal-nav" onclick="plannerPrevMonth()">&#8249;</button>
+                <button class="planner-cal-nav" onclick="plannerNextMonth()">&#8250;</button>
+              </div>
+            </div>
+            <div id="plannerCalGrid"></div>
+          </div>
+ 
+          <!-- EVENTS PANEL -->
+          <div class="events-panel">
+            <div class="planner-section-title">Today's Events</div>
+            <div class="event-form">
+              <input type="text" id="eventTitle" class="event-input" placeholder="Event title">
+              <input type="date" id="eventDate" class="event-input">
+              <button class="planner-add-btn" onclick="addPlannerEvent()">Add Event</button>
+            </div>
+            <div class="today-events-list" id="todayEvents"></div>
+          </div>
+        </div>
+ 
+        <div class="planner-bottom-grid">
+          <!-- TASKS PANEL -->
+          <div class="tasks-panel">
+            <div class="planner-section-title">Priority Tasks</div>
+            <div class="task-input-row">
+              <input type="text" id="plannerTaskInput" placeholder="Add task..." class="planner-task-input">
+              <button class="planner-add-btn" onclick="addPlannerTask()">Add</button>
+            </div>
+            <div id="plannerTaskList" class="p-task-list"></div>
+          </div>
+ 
+          <!-- MINDMAP PANEL -->
+          <div class="mindmap-panel">
+            <div class="planner-section-title">Mind Map Workspace</div>
+            <div class="mindmap-sub">Organize project ideas and academic concepts visually.</div>
+            <div class="mindmap-toolbar">
+              <input type="text" id="mindmapInput" class="mindmap-input" placeholder="Add new idea node...">
+              <button class="planner-add-btn" onclick="addMindNode()">Add Node</button>
+            </div>
+            <div class="mindmap-grid" id="mindmapGrid"></div>
+          </div>
+        </div>
+ 
+        <!-- Weekly schedule -->
+        <div class="card card-pad">
+          <div class="card-header"><span class="card-title">This Week's Schedule</span></div>
+          <table class="data-table">
+            <thead><tr><th>Day</th><th>Time</th><th>Course</th><th>Type</th><th>Room</th></tr></thead>
+            <tbody>
+              <tr><td>Monday</td><td>9:00 AM</td><td>Web Development</td><td><span class="badge badge-blue">Lecture</span></td><td>Room 302</td></tr>
+              <tr><td>Tuesday</td><td>11:00 AM</td><td>Machine Learning</td><td><span class="badge badge-amber">Lab</span></td><td>Lab 101</td></tr>
+              <tr><td>Wednesday</td><td>9:00 AM</td><td>Web Development</td><td><span class="badge badge-blue">Lecture</span></td><td>Room 302</td></tr>
+              <tr><td>Wednesday</td><td>3:00 PM</td><td>Computer Networks</td><td><span class="badge badge-blue">Lecture</span></td><td>Room 410</td></tr>
+              <tr><td>Thursday</td><td>11:00 AM</td><td>Machine Learning</td><td><span class="badge badge-amber">Lab</span></td><td>Lab 101</td></tr>
+              <tr><td>Thursday</td><td>3:00 PM</td><td>Office Hours</td><td><span class="badge badge-green">Open</span></td><td>Faculty Room 12</td></tr>
+              <tr><td>Friday</td><td>2:00 PM</td><td>DBMS</td><td><span class="badge badge-blue">Lecture</span></td><td>Room 204</td></tr>
+              <tr><td>Friday</td><td>3:00 PM</td><td>Computer Networks</td><td><span class="badge badge-blue">Lecture</span></td><td>Room 410</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+<!-- announcements -->
+ <div id="view-announcements" class="view">
+    <div class="content">
+      <div class="page-header" style="display:flex;align-items:flex-start;justify-content:space-between;">
+        <div><div class="page-title">Announcements</div><div class="page-sub">Broadcast messages to your students</div></div>
+        <button class="btn-primary" onclick="openModal('modal-announcement')">&#43; New Announcement</button>
+      </div>
+      <div class="card card-pad">
+        <div class="card-header"><span class="card-title">Sent Announcements</span></div>
+        <div id="announcements-list">
+          <div class="feed-item">
+            <div class="feed-icon-wrap" style="background:var(--accent-light);">&#128226;</div>
+            <div style="flex:1;min-width:0;"><div class="feed-title">React Final Project — Submission Guidelines</div><div class="feed-meta">Web Development &middot; Posted 6 May</div></div>
+            <span class="feed-badge" style="background:var(--accent-light);color:var(--accent);">All Students</span>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon-wrap" style="background:var(--amber-light);">&#9888;&#65039;</div>
+            <div style="flex:1;min-width:0;"><div class="feed-title">Neural Network Quiz — Reminder: Due 14 May</div><div class="feed-meta">Machine Learning &middot; Posted 4 May</div></div>
+            <span class="feed-badge" style="background:var(--amber-light);color:var(--amber);">Reminder</span>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon-wrap" style="background:var(--green-light);">&#128203;</div>
+            <div style="flex:1;min-width:0;"><div class="feed-title">Syllabus Update — Module 4 Added</div><div class="feed-meta">All Courses &middot; Posted 1 May</div></div>
+            <span class="feed-badge" style="background:var(--green-light);color:var(--green);">Update</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</div><!-- /main -->
+ 
+<!--create quiz modal-->
+<div class="modal-overlay" id="modal-create-quiz" onclick="closeModalOutside(event,'modal-create-quiz')">
+  <div class="modal" style="width:600px;">
+    <div class="modal-header">
+      <div class="modal-title">Create New Quiz</div>
+      <button class="modal-close" onclick="closeModal('modal-create-quiz')">&#10005;</button>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Quiz Title</label>
+      <input class="form-input" id="quiz-title" placeholder="e.g. Neural Network Quiz">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Course</label>
+      <select class="form-select" id="quiz-course">
+        <option>Web Development</option>
+        <option>Machine Learning</option>
+        <option>DBMS</option>
+        <option>Computer Networks</option>
+      </select>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div class="form-group">
+        <label class="form-label">Time Limit (minutes)</label>
+        <input class="form-input" id="quiz-time" type="number" placeholder="30">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Due Date</label>
+        <input class="form-input" id="quiz-due" type="date">
+      </div>
+    </div>
+ 
+    <div class="form-group">
+      <label class="form-label" style="margin-bottom:12px;">Questions</label>
+      <div class="questions-container" id="questions-container"></div>
+      <button class="add-question-btn" onclick="addQuestionBlock()">&#43; Add Another Question</button>
+    </div>
+ 
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeModal('modal-create-quiz')">Cancel</button>
+      <button class="btn-ghost" onclick="saveQuizDraft()">Save as Draft</button>
+      <button class="btn-primary" onclick="publishQuiz()">Publish Quiz</button>
+    </div>
+  </div>
+</div>
+ 
+<!--quiz results modal-->
+<div class="modal-overlay" id="modal-quiz-results" onclick="closeModalOutside(event,'modal-quiz-results')">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Quiz Results — Neural Network Quiz</div>
+      <button class="modal-close" onclick="closeModal('modal-quiz-results')">&#10005;</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px;">
+      <div style="text-align:center;background:var(--surface2);border-radius:var(--radius-sm);padding:12px;"><div style="font-family:var(--font-serif);font-size:26px;font-weight:bold;color:var(--accent);">22</div><div style="font-size:11px;color:var(--muted);">Attempted</div></div>
+      <div style="text-align:center;background:var(--surface2);border-radius:var(--radius-sm);padding:12px;"><div style="font-family:var(--font-serif);font-size:26px;font-weight:bold;color:var(--green);">76</div><div style="font-size:11px;color:var(--muted);">Avg Score</div></div>
+      <div style="text-align:center;background:var(--surface2);border-radius:var(--radius-sm);padding:12px;"><div style="font-family:var(--font-serif);font-size:26px;font-weight:bold;">28m</div><div style="font-size:11px;color:var(--muted);">Avg Time</div></div>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>Student</th><th>Score</th><th>Time Taken</th><th>Grade</th></tr></thead>
+      <tbody>
+        <tr><td>Sneha Rao</td><td>94</td><td>22 min</td><td><span class="badge badge-green">A</span></td></tr>
+        <tr><td>Aryan Kumar</td><td>88</td><td>25 min</td><td><span class="badge badge-green">A</span></td></tr>
+        <tr><td>Vikram Patel</td><td>82</td><td>29 min</td><td><span class="badge badge-accent" style="background:var(--accent-light);color:var(--accent);">B</span></td></tr>
+        <tr><td>Priya Nair</td><td>76</td><td>30 min</td><td><span class="badge badge-accent" style="background:var(--accent-light);color:var(--accent);">B</span></td></tr>
+        <tr><td>Karan Mehta</td><td>68</td><td>30 min</td><td><span class="badge badge-amber">C</span></td></tr>
+        <tr><td>Rohit Singh</td><td>55</td><td>30 min</td><td><span class="badge badge-red">D</span></td></tr>
+      </tbody>
+    </table>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeModal('modal-quiz-results')">Close</button>
+      <button class="btn-primary">Export CSV</button>
+    </div>
+  </div>
+</div>
+ 
+<!--assignment modal-->
+<div class="modal-overlay" id="modal-create-assignment" onclick="closeModalOutside(event,'modal-create-assignment')">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">New Assignment</div>
+      <button class="modal-close" onclick="closeModal('modal-create-assignment')">&#10005;</button>
+    </div>
+    <div class="form-group"><label class="form-label">Assignment Title</label><input class="form-input" id="assign-title" placeholder="e.g. React Final Project"></div>
+    <div class="form-group"><label class="form-label">Course</label><select class="form-select" id="assign-course"><option>Web Development</option><option>Machine Learning</option><option>DBMS</option><option>Computer Networks</option></select></div>
+    <div class="form-group"><label class="form-label">Description</label><textarea class="notes-area" id="assign-desc" style="height:72px;" placeholder="Assignment instructions..."></textarea></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div class="form-group"><label class="form-label">Due Date</label><input class="form-input" id="assign-due" type="date"></div>
+      <div class="form-group"><label class="form-label">Max Marks</label><input class="form-input" id="assign-marks" type="number" placeholder="100"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeModal('modal-create-assignment')">Cancel</button>
+      <button class="btn-primary" onclick="createAssignment()">Create Assignment</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-announcement" onclick="closeModalOutside(event,'modal-announcement')">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">New Announcement</div>
+      <button class="modal-close" onclick="closeModal('modal-announcement')">&#10005;</button>
+    </div>
+    <div class="form-group"><label class="form-label">Send To</label><select class="form-select" id="announce-to"><option>All My Courses</option><option>Web Development</option><option>Machine Learning</option><option>DBMS</option><option>Computer Networks</option></select></div>
+    <div class="form-group"><label class="form-label">Title</label><input class="form-input" id="announce-title" placeholder="Announcement title..."></div>
+    <div class="form-group"><label class="form-label">Tag</label><select class="form-select" id="announce-tag"><option value="General">General</option><option value="Reminder">Reminder</option><option value="Update">Update</option><option value="Urgent">Urgent</option><option value="Event">Event</option></select></div>
+    <div class="form-group"><label class="form-label">Message</label><textarea class="notes-area" id="announce-msg" style="height:100px;" placeholder="Type your message here..."></textarea></div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeModal('modal-announcement')">Cancel</button>
+      <button class="btn-primary" onclick="sendAnnouncement()">Send Announcement</button>
+    </div>
+  </div>
+</div>
+<!-- Add Course Modal -->
+<div class="modal-overlay" id="modal-add-course" onclick="closeModalOutside(event,'modal-add-course')">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Add New Course</div>
+      <button class="modal-close" onclick="closeModal('modal-add-course')">&#10005;</button>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Course Name</label>
+      <input class="form-input" id="new-course-name" placeholder="e.g. Advanced JavaScript">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Course Code</label>
+      <input class="form-input" id="new-course-code" placeholder="e.g. CS402">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Room</label>
+      <input class="form-input" id="new-course-room" placeholder="e.g. Room 501">
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeModal('modal-add-course')">Cancel</button>
+      <button class="btn-primary" onclick="addNewCourseFromModal()">Create Course</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

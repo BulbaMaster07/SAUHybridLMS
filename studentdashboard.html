@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAU LMS — Dashboard</title>
+  <link rel="stylesheet" href="Stylesheets/dashboard.css">
+  </script>
+<script src="Scripts/dashboard.js" defer></script>
+</head>
+<body>
+
+<aside class="sidebar">
+
+  <div class="sidebar-logo">
+    <div class="logo-name">SAU</div>
+    <div class="logo-sub">Learning Management System</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-label">Main</div>
+
+    <div class="nav-item active">
+      <span class="nav-icon">&#9632;</span>
+      Overview
+    </div>
+    <div class="nav-item" onclick="window.location.href='courses.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128218;</span>
+      Courses
+    </div>
+    <div class="nav-item" onclick="window.location.href='assignments.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128196;</span>
+      Assignments
+      <span class="nav-badge">4</span>
+    </div>
+    <div class="nav-item" onclick="window.location.href='grades.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128200;</span>
+      Grades
+    </div>
+
+    <div class="nav-label">Tools</div>
+
+    <div class="nav-item" onclick="window.location.href='planner.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128197;</span>
+      Planner
+    </div>
+    <div class="nav-item" onclick="window.location.href='discuss.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128172;</span>
+      Discuss
+    </div>
+    <div class="nav-item" onclick="window.location.href='https://ca-qr.avinya.live/login.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128247;</span>
+      QR Attendance
+    </div>
+    <div class="nav-item" onclick="window.location.href='index1.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128100;</span>
+      Profile
+    </div>
+    <div class="nav-item" onclick="window.location.href='index.html'" style="cursor:pointer;">
+       <span class="nav-icon">&#128682;</span>Logout 
+    </div>
+  </nav>
+ 
+  <div class="sidebar-user">  
+    <div class="user-avatar">AK</div>
+    <div>
+      <div class="user-name" id="dashboard-user-name">Aryan Kumar</div>
+      <div class="user-role">B.Tech CSE &middot; Sem 2</div>
+    </div>
+  </div>
+
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<div class="main">
+ 
+  <div class="topbar">
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">&#9776;</button>
+    <div>
+      <div class="topbar-greeting" id="dashboard-greeting">Good morning, Aryan &#128075;</div>
+      <div class="topbar-date" id="topbar-date"></div>
+    </div>
+    <div class="topbar-right">
+      <div class="search-box">&#128269;&nbsp; Search...</div>
+      <div class="icon-btn notif-dot" title="Notifications">&#128276;</div>
+      <div class="icon-btn" title="Settings" onclick="window.location.href='settings.html'">&#9881;</div>
+    </div>
+  </div>
+
+
+  <div class="content">
+
+    <div class="top-row">
+
+      <div class="hero">
+        <div class="hero-orb1"></div>
+        <div class="hero-orb2"></div>
+        <div class="hero-text">
+          <div class="hero-eyebrow">Semester 2 &nbsp;&middot;&nbsp; B.Tech CSE</div>
+          <div class="hero-title">Continue<br><em>where you left off</em></div>
+          <div class="hero-sub"> Python Programming &middot; Module 4 of 8</div>
+        </div>
+        <button class="hero-cta">Resume &rarr;</button>
+      </div>
+
+      <div class="card card-pad stat-card">
+        <div class="stat-val">8</div>
+        <div class="stat-label">Courses</div>
+        <span class="stat-trend trend-up">&#8593; Active</span>
+      </div>
+
+      <div class="card card-pad stat-card">
+        <div class="stat-val">3</div>
+        <div class="stat-label">Pending</div>
+        <span class="stat-trend trend-warn">&#9889; Due Soon</span>
+      </div>
+
+      <div class="card card-pad stat-card">
+        <div class="stat-val">8.7</div>
+        <div class="stat-label">CGPA</div>
+        <span class="stat-trend trend-up">&#8593; On Track</span>
+      </div>
+
+    </div><!-- /top-row -->
+
+
+    <!--  ROW 2: COURSES -->
+    <div class="card card-pad">
+      <div class="card-header">
+        <span class="card-title">Your Courses</span>
+      </div>
+      <div class="courses-scroll">
+
+        <div class="course-card">
+          <div class="course-icon" style="background:#dce7fd;">&#128187;</div>
+          <div class="course-name">Web Development</div>
+          <div class="course-meta">Dr. Sharma &middot; 22 lessons</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+          <div class="progress-pct">65% complete</div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-icon" style="background:#fef3dc;">&#129302;</div>
+          <div class="course-name">Python Programming</div>
+          <div class="course-meta">Dr. Seth &middot; 18 lessons</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
+          <div class="progress-pct">40% complete</div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-icon" style="background:#d6f5e7;">&#128451;</div>
+          <div class="course-name">Mathematics</div>
+          <div class="course-meta">Prof. Deshpande &middot; 20 lessons</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:55%"></div></div>
+          <div class="progress-pct">55% complete</div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-icon" style="background:#fde8e8;">&#128268;</div>
+          <div class="course-name">Data Structures</div>
+          <div class="course-meta">Dr. Ashwini &middot; 24 lessons</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:28%"></div></div>
+          <div class="progress-pct">28% complete</div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-icon" style="background:#ede8fd;">&#128288;</div>
+          <div class="course-name">English</div>
+          <div class="course-meta">Dr. Mukherjee &middot; 16 lessons</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+          <div class="progress-pct">72% complete</div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-icon" style="background:#fff3dc;">&#128208;</div>
+          <div class="course-name">Digital Logic Design</div>
+          <div class="course-meta">Dr. Ahuja &middot; 14 lessons</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:50%"></div></div>
+          <div class="progress-pct">50% complete</div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-icon" style="background:#ebffdc;">&#9881;</div>
+          <div class="course-name">Physics</div>
+          <div class="course-meta">Dr. Bhandari &middot; 14 lessons</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:50%"></div></div>
+          <div class="progress-pct">50% complete</div>
+        </div>
+      </div>
+    </div><!-- /courses card -->
+
+
+    <!--  ROW 3: BOTTOM 2-COL  -->
+    <div class="grid-2-1">
+
+      <!-- LEFT COLUMN -->
+      <div style="display:flex; flex-direction:column; gap:16px;">
+
+        <!-- TABBED CARD -->
+        <div class="card card-pad">
+          <div class="card-header">
+            <div class="tabs">
+              <div class="tab active"      onclick="switchTab(this,'tab-assign')">Assignments</div>
+              <div class="tab"             onclick="switchTab(this,'tab-grades')">Grades</div>
+              <div class="tab"             onclick="switchTab(this,'tab-sched')">Today</div>
+            </div>
+            <span class="card-action">View all &rarr;</span>
+          </div>
+
+          <!-- ASSIGNMENTS -->
+          <div id="tab-assign">
+            <div class="assign-row">
+              <div class="assign-dot" style="background:var(--red);"></div>
+              <div>
+                <div class="assign-name">React Final Project</div>
+                <div class="assign-course">Web Development</div>
+              </div>
+              <span class="assign-due due-urgent">10 May</span>
+            </div>
+            <div class="assign-row">
+              <div class="assign-dot" style="background:var(--amber);"></div>
+              <div>
+                <div class="assign-name">Neural Network Quiz</div>
+                <div class="assign-course">Machine Learning</div>
+              </div>
+              <span class="assign-due due-soon">14 May</span>
+            </div>
+            <div class="assign-row">
+              <div class="assign-dot" style="background:var(--green);"></div>
+              <div>
+                <div class="assign-name">ER Diagram Report</div>
+                <div class="assign-course">DBMS</div>
+              </div>
+              <span class="assign-due due-ok">18 May</span>
+            </div>
+            <div class="assign-row">
+              <div class="assign-dot" style="background:var(--green);"></div>
+              <div>
+                <div class="assign-name">Python Lab Submission</div>
+                <div class="assign-course">Machine Learning</div>
+              </div>
+              <span class="assign-due due-ok">20 May</span>
+            </div>
+          </div>
+
+          <!-- GRADES -->
+          <div id="tab-grades" style="display:none;">
+            <div class="grade-row">
+              <div class="grade-subject">Web Development</div>
+              <div class="grade-bar-wrap"><div class="grade-bar" style="width:88%; background:var(--green);"></div></div>
+              <div class="grade-score" style="color:var(--green);">88</div>
+            </div>
+            <div class="grade-row">
+              <div class="grade-subject">Machine Learning</div>
+              <div class="grade-bar-wrap"><div class="grade-bar" style="width:82%; background:var(--accent);"></div></div>
+              <div class="grade-score" style="color:var(--accent);">82</div>
+            </div>
+            <div class="grade-row">
+              <div class="grade-subject">DBMS</div>
+              <div class="grade-bar-wrap"><div class="grade-bar" style="width:91%; background:var(--green);"></div></div>
+              <div class="grade-score" style="color:var(--green);">91</div>
+            </div>
+            <div class="grade-row">
+              <div class="grade-subject">Computer Networks</div>
+              <div class="grade-bar-wrap"><div class="grade-bar" style="width:74%; background:var(--amber);"></div></div>
+              <div class="grade-score" style="color:var(--amber);">74</div>
+            </div>
+          </div>
+
+          <!-- TODAY'S SCHEDULE -->
+          <div id="tab-sched" style="display:none;">
+            <div class="schedule-item">
+              <div class="sched-time">9:00 AM</div>
+              <div class="sched-bar" style="background:var(--accent-mid);"></div>
+              <div>
+                <div class="sched-name">Web Development</div>
+                <div class="sched-room">Room 302 &middot; Dr. Sharma</div>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="sched-time">11:00 AM</div>
+              <div class="sched-bar" style="background:var(--amber);"></div>
+              <div>
+                <div class="sched-name">Machine Learning Lab</div>
+                <div class="sched-room">Lab 101 &middot; Dr. Verma</div>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="sched-time">2:00 PM</div>
+              <div class="sched-bar" style="background:var(--green);"></div>
+              <div>
+                <div class="sched-name">DBMS Tutorial</div>
+                <div class="sched-room">Room 204 &middot; Prof. Singh</div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /tabbed card -->
+
+
+        <!-- CAMPUS UPDATES CARD -->
+        <div class="card card-pad">
+          <div class="card-header">
+            <span class="card-title">Campus Updates</span>
+            <span class="card-action">See all &rarr;</span>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-icon-wrap" style="background:var(--red-light);">&#128203;</div>
+            <div style="flex:1; min-width:0;">
+              <div class="feed-title">Mid-Semester Examination Schedule Released</div>
+              <div class="feed-meta">Academic Office &middot; 2 hours ago</div>
+            </div>
+            <span class="feed-badge" style="background:var(--amber-light); color:var(--amber);">Notice</span>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-icon-wrap" style="background:var(--accent-light);">&#127942;</div>
+            <div style="flex:1; min-width:0;">
+              <div class="feed-title">Inter-College Hackathon &mdash; Registrations Open</div>
+              <div class="feed-meta">Student Cell &middot; Yesterday</div>
+            </div>
+            <span class="feed-badge" style="background:var(--accent-light); color:var(--accent);">Event</span>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-icon-wrap" style="background:var(--green-light);">&#129302;</div>
+            <div style="flex:1; min-width:0;">
+              <div class="feed-title">AI &amp; Ethics Workshop &mdash; 12 May, Auditorium</div>
+              <div class="feed-meta">Dept. CSE &middot; 2 days ago</div>
+            </div>
+            <span class="feed-badge" style="background:var(--green-light); color:var(--green);">Workshop</span>
+          </div>
+
+        </div><!-- /campus updates -->
+
+      </div><!-- /left column -->
+
+
+      <!-- RIGHT COLUMN -->
+      <div class="right-stack">
+
+        <!-- MINI CALENDAR -->
+        <div class="card card-pad">
+          <div class="mini-cal-header">
+            <span class="cal-month" id="cal-month-label"></span>
+            <div class="cal-nav">
+              <button onclick="changeMonth(-1)">&#8249;</button>
+              <button onclick="changeMonth(1)">&#8250;</button>
+            </div>
+          </div>
+          <div class="cal-grid" id="cal-grid"></div>
+          <div class="upcoming-events">
+            <div class="event-row">
+              <div class="event-dot" style="background:var(--red);"></div>
+              <div class="event-name">React Project Due</div>
+              <div class="event-date">10 May</div>
+            </div>
+            <div class="event-row">
+              <div class="event-dot" style="background:var(--accent);"></div>
+              <div class="event-name">AI Workshop</div>
+              <div class="event-date">12 May</div>
+            </div>
+            <div class="event-row">
+              <div class="event-dot" style="background:var(--amber);"></div>
+              <div class="event-name">ML Quiz</div>
+              <div class="event-date">14 May</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NOTES -->
+        <div class="card card-pad">
+          <div class="card-header" style="margin-bottom:10px;">
+            <span class="card-title">Quick Notes</span>
+          </div>
+          <textarea class="notes-area" placeholder="Jot something down..."></textarea>
+          <div class="btn-row">
+            <button class="btn-primary" onclick="saveNote()">Save</button>
+            <button class="btn-ghost"   onclick="clearNote()">Clear</button>
+            <span class="note-saved" id="note-saved">Saved &#10003;</span>
+          </div>
+        </div>
+
+        <!-- CGPA -->
+        <div class="card card-pad">
+          <div class="card-header" style="margin-bottom:14px;">
+            <span class="card-title">Academic Standing</span>
+          </div>
+          <div class="cgpa-wrap">
+            <div class="ring-container">
+              <div class="ring-bg"></div>
+              <div class="ring-fill" style="
+                border-color: var(--accent);
+                border-bottom-color: transparent;
+                border-left-color: transparent;
+                transform: rotate(calc(-90deg + 360deg * 0.87));
+              "></div>
+              <div class="ring-label">8.7</div>
+            </div>
+            <div>
+              <div class="cgpa-num">8.7</div>
+              <div class="cgpa-sub">of 10.0 CGPA</div>
+              <div class="cgpa-legend">
+                <div class="legend-item">
+                  <div class="legend-dot" style="background:var(--green);"></div>
+                  Top 15% of batch
+                </div>
+                <div class="legend-item">
+                  <div class="legend-dot" style="background:var(--accent);"></div>
+                  Eligible for Honours
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /right column -->
+
+    </div><!-- /grid-2-1 -->
+
+  </div><!-- /content -->
+</div><!-- /main -->
+</body>
+</html>

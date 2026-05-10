@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planner - SAU LMS</title>
+
+<link rel="stylesheet" href="Stylesheets/dashboard.css">
+<link rel="stylesheet" href="Stylesheets/planner.css">
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+  <div class="sidebar-logo">
+    <div class="logo-name">SAU</div>
+    <div class="logo-sub">Learning Management System</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-label">Main</div>
+
+    <div class="nav-item" onclick="window.location.href='studentdashboard.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#9632;</span>
+      Overview
+    </div>
+    <div class="nav-item" onclick="window.location.href='courses.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128218;</span>
+      Courses
+    </div>
+    <div class="nav-item" onclick="window.location.href='assignments.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128196;</span>
+      Assignments
+      <span class="nav-badge">4</span>
+    </div>
+    <div class="nav-item" onclick="window.location.href='grades.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128200;</span>
+      Grades
+    </div>
+
+    <div class="nav-label">Tools</div>
+
+    <div class="nav-item active" onclick="window.location.href='planner.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128197;</span>
+      Planner
+    </div>
+    <div class="nav-item" onclick="window.location.href='discuss.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128172;</span>
+      Discuss
+    </div>
+    <div class="nav-item" onclick="window.location.href='https://ca-qr.avinya.live/login.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128247;</span>
+      QR Attendance
+    </div>
+    <div class="nav-item" onclick="window.location.href='index1.html'" style="cursor:pointer;">
+      <span class="nav-icon">&#128100;</span>
+      Profile
+    </div>
+    <div class="nav-item" onclick="window.location.href='index.html'" style="cursor:pointer;">
+       <span class="nav-icon">&#128682;</span>Logout 
+    </div>
+  </nav>
+
+  <div class="sidebar-user">
+    <div class="user-avatar">AK</div>
+    <div>
+      <div class="user-name" id="dashboard-user-name">Aryan Kumar</div>
+      <div class="user-role">B.Tech CSE &middot; Sem 2</div>
+    </div>
+  </div>
+
+</aside>
+
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<div class="main">
+
+<div class="topbar">
+<button class="mobile-menu-btn" onclick="toggleSidebar()">&#9776;</button>
+<div>
+<div class="topbar-greeting">Planner Workspace</div>
+<div class="topbar-date">Calendar, goals, tasks and event management</div>
+</div>
+</div>
+
+<div class="content">
+
+<div class="planner-layout">
+
+<div class="planner-hero">
+
+<div class="planner-eyebrow">
+Productivity System
+</div>
+
+<div class="planner-title">
+Organize your<br>
+academic workflow
+</div>
+
+<div class="planner-sub">
+Track events, tasks, lectures and brainstorming ideas with an intelligent planning workspace.
+</div>
+
+</div>
+
+
+
+<div class="planner-grid">
+
+<div class="calendar-panel">
+
+<div class="calendar-header">
+
+<div class="calendar-month"
+id="calendarMonth">
+May 2026
+</div>
+
+<div class="calendar-actions">
+
+<button class="calendar-nav"
+onclick="previousMonth()">
+&#8249;
+</button>
+
+<button class="calendar-nav"
+onclick="nextMonth()">
+&#8250;
+</button>
+
+</div>
+
+</div>
+
+<div id="calendarGrid"></div>
+
+</div>
+
+
+
+<div class="events-panel">
+
+<div class="section-title">
+Today's Events
+</div>
+
+<div class="event-form">
+
+<input type="text"
+id="eventTitle"
+class="event-input"
+placeholder="Event title">
+
+<input type="date"
+id="eventDate"
+class="event-input">
+
+<button class="planner-btn"
+onclick="addEvent()">
+Add Event
+</button>
+
+</div>
+
+<div class="today-events"
+id="todayEvents"></div>
+
+</div>
+
+</div>
+
+
+
+<div class="planner-bottom-grid">
+
+<div class="tasks-panel">
+
+<div class="section-title">
+Priority Tasks
+</div>
+
+<div class="task-input-row">
+
+<input type="text"
+id="taskInput"
+placeholder="Add task..."
+class="task-input">
+
+<button class="planner-btn"
+onclick="addTask()">
+Add
+</button>
+
+</div>
+
+<div id="taskList"
+class="task-list"></div>
+
+</div>
+
+
+
+<div class="mindmap-panel">
+
+<div class="section-title">
+Mind Map Workspace
+</div>
+
+<div class="mindmap-sub">
+Organize project ideas and academic concepts.
+</div>
+
+<div class="mindmap-toolbar">
+
+<input type="text"
+id="mindmapInput"
+class="mindmap-input"
+placeholder="Add new idea node...">
+
+<button class="planner-btn"
+onclick="addMindNode()">
+Add Node
+</button>
+
+</div>
+
+<div class="mindmap-grid"
+id="mindmapGrid"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="Scripts/dashboard.js"></script>
+<script src="Scripts/planner.js"></script>
+
+</body>
+</html>

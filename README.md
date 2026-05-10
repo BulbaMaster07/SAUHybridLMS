@@ -196,9 +196,9 @@ South Asian University
 
 ---
 
-# :pushpin: Repository
+# :pushpin: Project Proposal
 
-[View Project Deployment](https://bulbamaster07.github.io/SAUHybridLMS/)
+[View Project Proposal](./SAULMS_THASHAN-VAREYNYAM-SHOURYA_FWDProjectProposal.pdf)
 
 ---
 
